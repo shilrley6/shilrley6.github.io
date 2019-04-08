@@ -271,6 +271,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/04/06/Webly-Supervised-Joint-Embedding-for-Cross-Modal-Image-Text-Retrieval/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/06/Webly-Supervised-Joint-Embedding-for-Cross-Modal-Image-Text-Retrieval/" itemprop="url">Webly Supervised Joint Embedding for Cross-Modal Image-Text Retrieval</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-06T20:52:36+08:00">
+                2019-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>A brief introduction to the paper &lt;<webly supervised joint embedding for cross-modal image-text retrieval>&gt;</webly></p>
+<ol>
+<li><p>Introduction<br>1.1 Cross-modal Retrieval<br> (1) Task: take one type of data as the query to retrieve relevant data of another type.<br> (2) Challenge: how to measure the content similarity between different modalities of data, which is referred as the heterogeneity gap<br> (3)Common Framework: Feature extraction ——— Correlation modal common representation ——— search result ranking and summarization</p>
+<p>1.2 Overview of the Proposed Approach<br> (1) VSE<br> (2) a two-stage approach:<br>   A. a supervised formulation —&gt; that leverages the available clean image-text pairs from a dataset</p>
+<pre><code> an aligned representation --&gt; that can be shared across three modalities (e.g., image, tag, text).
+ loss function --&gt; bi-directional ranking loss
+</code></pre><p>   B. LUPI  </p>
+<pre><code> multitask learning strategies
+ curriculum guided training strategy
+</code></pre></li>
+<li><p>Related Work<br>2.1 VSE(Visual-Semantic Embedding)<br> (1)<br>2.2 Image-Text Retrieval<br> (1) Methods: CCA | ACMR | VSE | ……<br> (2) Improving aspects: loss function | similarity calculation | Input feartures<br>2.3 Webly supervised learning</p>
+</li>
+<li><p>Approach<br>3.1 Network Structure and Input Feature<br> (1) Network Structure:<br>   A. three different branches: expert network + two fully connected embedding layers<br>   expert networks —&gt; focus on identifying modality-specific features<br>   embedding layers —&gt; convert the modality specific features to modality-robust features<br> (2) Input Feature<br>   A. Image: Resnet152 | VGG19<br>   B. Text(Sentence): Word2Vec + GRU<br>   C. Tag: Word2Vec (sum / num)</p>
+<p>3.2 Train Joint Embedding with Ranking Loss<br> (1) Method: VSE<br> (2) Representation:<br>   i’: image feature<br>   i : the projection of image feature on the joint space | i =  W(i)i’<br>   s’: text embedding<br>   s : the projection of text embedding on the joint space | s =  W(s)s’<br> (3) Loss function: (for VSE) | (for VSE++)<br>   s-: non-matching text embedding for image embedding i<br>   s : matching text embedding for image embedding i<br>   (i &amp; i- are similar to s &amp; s-)<br>   ∆ : margin value<br>   f(i,s)； scoring function， measuring the similarity between the images and text in the joint embedded space.(cosine similarity used in this work)<br>3.3 Training Joint Embedding with Web Data<br> (1) Obstacle:<br>   A. GRU based approach is not suitable for representing tags since tags do not have any semantic context as in the sentences. -&gt; it is not possible to directly update the embedding using image-tag pairs.<br>   B. training data do not provide three modality information at the same time -&gt; employing LUPI strategies are also not possible<br> (2) Two-stage approach<br>   1) Training initial Joint Embedding</p>
+<pre><code> A. consider nouns and verbs from relevant sentence as dummy tags for an image
+ B. combine the image-text ranking loss objective with image-tag ranking loss objective.
+</code></pre><p>   2)  Model Adaptation with Web Data</p>
+<pre><code> A. a smaller learning rate
+ B. a curriculum learning-based strategy: in the early stages of training, the network is presented with images related to frequently occurring concepts/keywords in the clean training set.
+</code></pre></li>
+<li><p>Datasets and Evaluation Metric<br>4.1 Datasets: MSCOCO | Flickr30K | Web Image Collection</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/03/30/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -432,7 +574,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
