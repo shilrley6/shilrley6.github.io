@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liu Liu">
-<meta property="og:url" content="https://shilrley6.github.io/index.html">
+<meta name="description" content="a brief introduction to Stacked Cross Attention for Image-Text Matching 0.Summary  (1) Image representation: bottom-up attention + Faster-RNN + ResNet101  (2) Sentence represetation: one-hot vector (w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stacked Cross Attention for Image-Text Matching">
+<meta property="og:url" content="https://shilrley6.github.io/2019/05/20/Stacked-Cross-Attention-forImage-Text-Matching/index.html">
 <meta property="og:site_name" content="Liu Liu">
+<meta property="og:description" content="a brief introduction to Stacked Cross Attention for Image-Text Matching 0.Summary  (1) Image representation: bottom-up attention + Faster-RNN + ResNet101  (2) Sentence represetation: one-hot vector (w">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-20T07:16:09.666Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liu Liu">
+<meta name="twitter:title" content="Stacked Cross Attention for Image-Text Matching">
+<meta name="twitter:description" content="a brief introduction to Stacked Cross Attention for Image-Text Matching 0.Summary  (1) Image representation: bottom-up attention + Faster-RNN + ResNet101  (2) Sentence represetation: one-hot vector (w">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://shilrley6.github.io/">
+  <link rel="canonical" href="https://shilrley6.github.io/2019/05/20/Stacked-Cross-Attention-forImage-Text-Matching/">
 
 
 
 
 
-  <title>Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Stacked Cross Attention for Image-Text Matching | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-  page-home">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -256,154 +259,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/20/CM-GANs-Cross-modal-Generative-Adversarial-Networksfor-Common-Representation-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/20/CM-GANs-Cross-modal-Generative-Adversarial-Networksfor-Common-Representation-Learning/" itemprop="url">CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-20T15:16:53+08:00">
-                2019-05-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>a brief introduction to <em>CM-GANs: Cross-modal Generative Adversarial Networks<br>for Common Representation Learning</em></p>
-<p>0.Summary<br>  0.1 Structure<br>    (1) Generative Model:<br>      VGG19(image) | word CNN(text)<br>        -&gt; fully connected layer(first) + batch normalization + RELU<br>        -&gt; fully connected layer(second) + batch normalization + RELU</p>
-<pre><code>    + weight-sharing between 2 paths
-    -&gt; Common representations -&gt; softmax layer &amp; decoder
-  Decoder: fully connected layer(first) + batch normalization + RELU
-    -&gt; fully connected layer(second)
-    -&gt; text | image reconstructions
-  (2) Intra-modality Discriminative Model:
-    reconstructions -&gt; fully connected layer -&gt; sigmoid layer
-    original representation: 1 | reconstructed representation: 0
-  (3) Inter-modality Discriminative Model:
-     a. two-pathway network
-     b. input: common representation + original representation
-     c. each path: softmax layer
-      -&gt; fully connected layer(first) + batch normalization + RELU
-      -&gt; fully connected layer(second) (out: single-value predicted score)
-      -&gt; sigmoid layer
-    d. Label:
-      Image:
-        image common representation: 1
-        corresponding text representation
-          &amp; mismatched image common representation: 0
-      Text: 
-        text common representation: 1
-        corresponding image representation
-          &amp; mismatched text common representation: 0
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -433,9 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/20/Stacked-Cross-Attention-forImage-Text-Matching/" itemprop="url">Stacked Cross Attention for Image-Text Matching</a></h1>
+          <h1 class="post-title" itemprop="name headline">Stacked Cross Attention for Image-Text Matching</h1>
         
 
         <div class="post-meta">
@@ -485,17 +341,13 @@
       
 
       
-        
-          
-            <p>a brief introduction to <em>Stacked Cross Attention for Image-Text Matching</em></p>
+        <p>a brief introduction to <em>Stacked Cross Attention for Image-Text Matching</em></p>
 <p>0.Summary<br>  (1) Image representation: bottom-up attention + Faster-RNN + ResNet101<br>  (2) Sentence represetation: one-hot vector (word -&gt; 300-dimentional vector)<br>    =&gt; bi-directional GRU(AVG forward &amp; backword)<br>  (3) Common representation: SCA model<br>    a. Input: a set of image features(image feature -&gt; a region in an image)</p>
 <pre><code>  + a set of word features (word feature -&gt; a word in a sentence)
 b. Output: similarity score
 c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
 </code></pre><p>  (4) Loss function: hinge-based triplet ranking loss(like vsepp)<br>    -&gt; finding the hardest negatives based on the similarity<br>  (5) Experiments:<br>    a.Datasets: COCO | Flickr 30k </p>
 
-          
-        
       
     </div>
     
@@ -512,138 +364,32 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/17/Order-Embeddings-of-Images-and-Language/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/17/Order-Embeddings-of-Images-and-Language/" itemprop="url">Order-Embeddings of Images and Language</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-17T18:53:13+08:00">
-                2019-05-17
-              </time>
+              <a href="/2019/05/17/Order-Embeddings-of-Images-and-Language/" rel="next" title="Order-Embeddings of Images and Language">
+                <i class="fa fa-chevron-left"></i> Order-Embeddings of Images and Language
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
+              <a href="/2019/05/20/CM-GANs-Cross-modal-Generative-Adversarial-Networksfor-Common-Representation-Learning/" rel="prev" title="CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning">
+                CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning <i class="fa fa-chevron-right"></i>
+              </a>
             
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>a brief introduction to <em>Order-Embeddings of Images and Language</em></p>
-<ol>
-<li><p>Abstact<br>(1) Goal: explicitly model<br> -&gt; the partial order structure of this visual-semantic hierarchy<br>(2) method: learn ordered representations</p>
-</li>
-<li><p>Introduction</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -653,428 +399,11 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/15/VSE-Improving-Visual-Semantic-Embeddings-with-Hard-Negatives/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/15/VSE-Improving-Visual-Semantic-Embeddings-with-Hard-Negatives/" itemprop="url">VSE++: Improving Visual-Semantic Embeddings with Hard Negatives</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-15T18:09:45+08:00">
-                2019-05-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>a brief introduction to <em>VSE++: Improving Visual-Semantic Embeddings with Hard Negatives</em></p>
-<ol>
-<li><p>Abstract<br>(1) inspired by: hard negative mining<br>(2) propose: a new loss function (a simple change to common loss function)<br>(3) combined with: fine tune + augmented data</p>
-</li>
-<li><p>Introduction<br>(1) basic problem: one of ranking<br>(2) augmented data + fine tune =&gt; improve Caption retrieval<br>(3) the benefit of a more powerful image encoder, with finetuning =&gt; is amplified with the use of the loss function</p>
-</li>
-<li><p>Learning Visual-Semantic Embeddings<br>(1) the target of I-T retrieval: ↑ R@k<br>(2) the Similarity funtion  -&gt; is defined on the joint embedding space<br>3.1 Visual-Semantic Embedding<br> (1) Image Encoder: VGG19 | ResNet152<br> (2) Word Encoder: GRU-based text encoder<br> (3) mappings into the joint embedding space -&gt; linear projections<br> (4) similarity function: inner product<br> (5) cumulative loss over training data:<br> (6) loss function for a single training exemplar: hinge-based triplet ranking loss<br>3.2 Emphasis on Hard Negatives<br> (1) hard negatives: the negatives closest to each training query.<br> (2) new loss function: (to emphasis the hardest negatives)<br> (3) how to find hardest negatives: find them within each mini-batch + random sampling of the mini-batches<br>3.3 Probability of Sampling the Hardest Negative<br> (1) for large enough mini-batchs, with high probability we sample negative captions that are harder than 90% of the entire training set<br> (2) Mini-batches size: 128</p>
-</li>
-<li><p>Experiments<br>(1) Image:<br> a. previous work:<br>   extract image features directly from FC7, the penultimate fully connected layer<br>   dimensionality: 4096 for VGG19 | 2048 for ResNet152<br> b. steps:<br>   resize the image to 256 X 256<br>   use either a single crop of size 224 X 224 or the mean of feature vectors for multiple crops of similar size<br> c. 1C | 10C | RC<br>   1C: one center crop<br>   10C: training with 10 crops at fixed locations<br>   RC: a single random crop (used in this paper)<br>(2) Caption:<br> a. dimensionality: 300 -&gt; GRU -&gt; 1024<br>(3) Normalization:<br> a. VSE: the caption embedding is normalized, while the image embedding is not.<br> b. VSEPP: normalize both<br> c. reason: Not normalizing the image embedding changes the importance of samples.<br> -&gt; not normalizing the image embedding helped the VSE0 to find a better solution.<br> However, VSE++ is not significantly affected by this normalization.<br>   3.2 Details of Training</p>
-<pre><code> (1) Adam optimizer
- (2) at most 30 epochs
-   a. Common: start -&gt; learning rate **0:0002** for 15 epochs -&gt; learning rate to **0:00002** for another 15 epochs
-   b. fine-tuned: trained for 30 epochs with a fixed image encoder -&gt; then learning rate to **0:00002** for another 15 epochs
- (3) margin: 0.2
- (4) solution to over-fitting: choosing the snapshot of the model that performs best on the validation set
-   The best snapshot: selected based on the sum of the recalls on the validation set
-</code></pre><p>   3.5 Improving Order Embeddings</p>
-<pre><code>   training set: 10C + RV
- (1) Order: copied from original paper *Order-Embeddings of Images and Language*
- (2)Order0: use training settings in orginal paper.
-   a. start training with a learning rate of **0:001** for 15 epochs
-   b. lower the learning rate to **0:0001** for another 15 epochs
-   c. margin: 0:05
-   d. takes the absolute value of embeddings before computing the similarity function
- (3)Order++: use the same learning schedule and margin as the experiments in this paper + MH loss function
-</code></pre><p>   3.6 Behavior of Loss Functions</p>
-<pre><code> MH loss depends on a smaller set of triplets compared to the SH loss
-</code></pre></li>
-</ol>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/04/06/Webly-Supervised-Joint-Embedding-for-Cross-Modal-Image-Text-Retrieval/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/06/Webly-Supervised-Joint-Embedding-for-Cross-Modal-Image-Text-Retrieval/" itemprop="url">Webly Supervised Joint Embedding for Cross-Modal Image-Text Retrieval</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-06T20:52:36+08:00">
-                2019-04-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>A brief introduction to the paper <em>Webly Supervised Joint Embedding for Cross-Modal Image-Text Retrieval</em></p>
-<ol>
-<li><p>Introduction<br>1.1 Cross-modal Retrieval<br> (1) Task: take one type of data as the query to retrieve relevant data of another type.<br> (2) Challenge: how to measure the content similarity between different modalities of data, which is referred as the heterogeneity gap<br> (3)Common Framework: Feature extraction ——— Correlation modal common representation ——— search result ranking and summarization</p>
-<p>1.2 Overview of the Proposed Approach<br> (1) VSE<br> (2) a two-stage approach:<br>   A. a supervised formulation —&gt; that leverages the available clean image-text pairs from a dataset</p>
-<pre><code> an aligned representation --&gt; that can be shared across three modalities (e.g., image, tag, text).
- loss function --&gt; bi-directional ranking loss
-</code></pre><p>   B. LUPI  </p>
-<pre><code> multitask learning strategies
- curriculum guided training strategy
-</code></pre></li>
-<li><p>Related Work<br>2.1 VSE(Visual-Semantic Embedding)<br> (1)<br>2.2 Image-Text Retrieval<br> (1) Methods: CCA | ACMR | VSE | ……<br> (2) Improving aspects: loss function | similarity calculation | Input feartures<br>2.3 Webly supervised learning</p>
-</li>
-<li><p>Approach<br>3.1 Network Structure and Input Feature<br> (1) Network Structure:<br>   A. three different branches: expert network + two fully connected embedding layers<br>   expert networks —&gt; focus on identifying modality-specific features<br>   embedding layers —&gt; convert the modality specific features to modality-robust features<br> (2) Input Feature<br>   A. Image: Resnet152 | VGG19<br>   B. Text(Sentence): Word2Vec + GRU<br>   C. Tag: Word2Vec (sum / num)</p>
-<p>3.2 Train Joint Embedding with Ranking Loss<br> (1) Method: VSE<br> (2) Representation:<br>   i’: image feature<br>   i : the projection of image feature on the joint space | i =  W(i)i’<br>   s’: text embedding<br>   s : the projection of text embedding on the joint space | s =  W(s)s’<br> (3) Loss function: (for VSE) | (for VSE++)<br>   s-: non-matching text embedding for image embedding i<br>   s : matching text embedding for image embedding i<br>   (i &amp; i- are similar to s &amp; s-)<br>   ∆ : margin value<br>   f(i,s)； scoring function， measuring the similarity between the images and text in the joint embedded space.(cosine similarity used in this work)<br>3.3 Training Joint Embedding with Web Data<br> (1) Obstacle:<br>   A. GRU based approach is not suitable for representing tags since tags do not have any semantic context as in the sentences. -&gt; it is not possible to directly update the embedding using image-tag pairs.<br>   B. training data do not provide three modality information at the same time -&gt; employing LUPI strategies are also not possible<br> (2) Two-stage approach<br>   1) Training initial Joint Embedding</p>
-<pre><code> A. consider nouns and verbs from relevant sentence as dummy tags for an image
- B. combine the image-text ranking loss objective with image-tag ranking loss objective.
-</code></pre><p>   2)  Model Adaptation with Web Data</p>
-<pre><code> A. a smaller learning rate
- B. a curriculum learning-based strategy: in the early stages of training, the network is presented with images related to frequently occurring concepts/keywords in the clean training set.
-</code></pre></li>
-<li><p>Datasets and Evaluation Metric<br>4.1 Datasets: MSCOCO | Flickr30K | Web Image Collection</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/03/30/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/30/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-30T21:56:27+08:00">
-                2019-03-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -1082,6 +411,10 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1288,6 +621,10 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
