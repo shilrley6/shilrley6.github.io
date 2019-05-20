@@ -343,31 +343,31 @@
         
           
             <p>a brief introduction to <em>CM-GANs: Cross-modal Generative Adversarial Networks<br>for Common Representation Learning</em></p>
-<p>0.Summary<br>  0.1 Structure<br>    (1) Generative Model:<br>      VGG19(image) | word CNN(text)<br>        -&gt; fully connected layer(first) + batch normalization + RELU<br>        -&gt; fully connected layer(second) + batch normalization + RELU</p>
-<pre><code>    + weight-sharing between 2 paths
-    -&gt; Common representations -&gt; softmax layer &amp; decoder
+<p>0.Summary<br>  0.1 Structure<br>    (1) Generative Model:<br>      VGG19(image) | word CNN(text)<br>      -&gt; fully connected layer(first) + batch normalization + RELU<br>      -&gt; fully connected layer(second) + batch normalization + RELU</p>
+<pre><code>  + weight-sharing between 2 paths
+  -&gt; Common representations -&gt; softmax layer &amp; decoder
   Decoder: fully connected layer(first) + batch normalization + RELU
-    -&gt; fully connected layer(second)
-    -&gt; text | image reconstructions
-  (2) Intra-modality Discriminative Model:
-    reconstructions -&gt; fully connected layer -&gt; sigmoid layer
-    original representation: 1 | reconstructed representation: 0
-  (3) Inter-modality Discriminative Model:
-     a. two-pathway network
-     b. input: common representation + original representation
-     c. each path: softmax layer
-      -&gt; fully connected layer(first) + batch normalization + RELU
-      -&gt; fully connected layer(second) (out: single-value predicted score)
-      -&gt; sigmoid layer
-    d. Label:
-      Image:
-        image common representation: 1
-        corresponding text representation
-          &amp; mismatched image common representation: 0
-      Text: 
-        text common representation: 1
-        corresponding image representation
-          &amp; mismatched text common representation: 0
+  -&gt; fully connected layer(second)
+  -&gt; text | image reconstructions
+(2) Intra-modality Discriminative Model:
+  reconstructions -&gt; fully connected layer -&gt; sigmoid layer
+  original representation: 1 | reconstructed representation: 0
+(3) Inter-modality Discriminative Model:
+  a. two-pathway network
+  b. input: common representation + original representation
+  c. each path: softmax layer
+    -&gt; fully connected layer(first) + batch normalization + RELU
+    -&gt; fully connected layer(second) (out: single-value predicted score)
+    -&gt; sigmoid layer
+  d. Label:
+    Image:
+      image common representation: 1
+      corresponding text representation
+        &amp; mismatched image common representation: 0
+    Text:
+      text common representation: 1
+      corresponding image representation
+        &amp; mismatched text common representation: 0
 </code></pre>
           
         
@@ -489,10 +489,10 @@
           
             <p>a brief introduction to <em>Stacked Cross Attention for Image-Text Matching</em></p>
 <p>0.Summary<br>  (1) Image representation: bottom-up attention + Faster-RNN + ResNet101<br>  (2) Sentence represetation: one-hot vector (word -&gt; 300-dimentional vector)<br>    =&gt; bi-directional GRU(AVG forward &amp; backword)<br>  (3) Common representation: SCA model<br>    a. Input: a set of image features(image feature -&gt; a region in an image)</p>
-<pre><code>  + a set of word features (word feature -&gt; a word in a sentence)
+<pre><code>+ a set of word features (word feature -&gt; a word in a sentence)
 b. Output: similarity score
 c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
-</code></pre><p>  (4) Loss function: hinge-based triplet ranking loss(like vsepp)<br>    -&gt; finding the hardest negatives based on the similarity<br>  (5) Experiments:<br>    a.Datasets: COCO | Flickr 30k </p>
+</code></pre><p>  (4) Loss function: hinge-based triplet ranking loss(like vsepp)<br>    -&gt; finding the hardest negatives based on the similarity<br>  (5) Experiments:<br>    a.Datasets: COCO | Flickr 30k</p>
 
           
         

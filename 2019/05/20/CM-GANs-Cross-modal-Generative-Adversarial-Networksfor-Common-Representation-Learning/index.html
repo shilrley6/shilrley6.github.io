@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Liu Liu">
 <meta property="og:description" content="a brief introduction to CM-GANs: Cross-modal Generative Adversarial Networksfor Common Representation Learning 0.Summary  0.1 Structure    (1) Generative Model:      VGG19(image) | word CNN(text)">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-20T07:58:11.502Z">
+<meta property="og:updated_time" content="2019-05-20T08:02:28.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning">
 <meta name="twitter:description" content="a brief introduction to CM-GANs: Cross-modal Generative Adversarial Networksfor Common Representation Learning 0.Summary  0.1 Structure    (1) Generative Model:      VGG19(image) | word CNN(text)">
@@ -342,31 +342,31 @@
 
       
         <p>a brief introduction to <em>CM-GANs: Cross-modal Generative Adversarial Networks<br>for Common Representation Learning</em></p>
-<p>0.Summary<br>  0.1 Structure<br>    (1) Generative Model:<br>      VGG19(image) | word CNN(text)<br>        -&gt; fully connected layer(first) + batch normalization + RELU<br>        -&gt; fully connected layer(second) + batch normalization + RELU</p>
-<pre><code>    + weight-sharing between 2 paths
-    -&gt; Common representations -&gt; softmax layer &amp; decoder
+<p>0.Summary<br>  0.1 Structure<br>    (1) Generative Model:<br>      VGG19(image) | word CNN(text)<br>      -&gt; fully connected layer(first) + batch normalization + RELU<br>      -&gt; fully connected layer(second) + batch normalization + RELU</p>
+<pre><code>  + weight-sharing between 2 paths
+  -&gt; Common representations -&gt; softmax layer &amp; decoder
   Decoder: fully connected layer(first) + batch normalization + RELU
-    -&gt; fully connected layer(second)
-    -&gt; text | image reconstructions
-  (2) Intra-modality Discriminative Model:
-    reconstructions -&gt; fully connected layer -&gt; sigmoid layer
-    original representation: 1 | reconstructed representation: 0
-  (3) Inter-modality Discriminative Model:
-     a. two-pathway network
-     b. input: common representation + original representation
-     c. each path: softmax layer
-      -&gt; fully connected layer(first) + batch normalization + RELU
-      -&gt; fully connected layer(second) (out: single-value predicted score)
-      -&gt; sigmoid layer
-    d. Label:
-      Image:
-        image common representation: 1
-        corresponding text representation
-          &amp; mismatched image common representation: 0
-      Text: 
-        text common representation: 1
-        corresponding image representation
-          &amp; mismatched text common representation: 0
+  -&gt; fully connected layer(second)
+  -&gt; text | image reconstructions
+(2) Intra-modality Discriminative Model:
+  reconstructions -&gt; fully connected layer -&gt; sigmoid layer
+  original representation: 1 | reconstructed representation: 0
+(3) Inter-modality Discriminative Model:
+  a. two-pathway network
+  b. input: common representation + original representation
+  c. each path: softmax layer
+    -&gt; fully connected layer(first) + batch normalization + RELU
+    -&gt; fully connected layer(second) (out: single-value predicted score)
+    -&gt; sigmoid layer
+  d. Label:
+    Image:
+      image common representation: 1
+      corresponding text representation
+        &amp; mismatched image common representation: 0
+    Text:
+      text common representation: 1
+      corresponding image representation
+        &amp; mismatched text common representation: 0
 </code></pre>
       
     </div>
