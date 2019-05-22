@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="a brief introduction to CM-GANs: Cross-modal Generative Adversarial Networksfor Common Representation Learning 0.Summary  0.1 Structure    (1) Generative Model:      VGG19(image) | word CNN(text)">
+<meta name="description" content="a brief introduction to Learning Two-Branch Neural Networksfor Image-Text Matching Tasks  Summary(1) According to different ways to learn the similarity score, this paperpropose two variants of two-br">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning">
-<meta property="og:url" content="https://shilrley6.github.io/2019/05/20/CM-GANs-Cross-modal-Generative-Adversarial-Networksfor-Common-Representation-Learning/index.html">
+<meta property="og:title" content="Learning Two-Branch Neural Networks for Image-Text Matching Tasks">
+<meta property="og:url" content="https://shilrley6.github.io/2019/05/22/Learning-Two-Branch-Neural-Networksfor-Image-Text-Matching-Tasks/index.html">
 <meta property="og:site_name" content="Liu Liu">
-<meta property="og:description" content="a brief introduction to CM-GANs: Cross-modal Generative Adversarial Networksfor Common Representation Learning 0.Summary  0.1 Structure    (1) Generative Model:      VGG19(image) | word CNN(text)">
+<meta property="og:description" content="a brief introduction to Learning Two-Branch Neural Networksfor Image-Text Matching Tasks  Summary(1) According to different ways to learn the similarity score, this paperpropose two variants of two-br">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-20T08:03:44.310Z">
+<meta property="og:updated_time" content="2019-05-22T08:35:36.502Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning">
-<meta name="twitter:description" content="a brief introduction to CM-GANs: Cross-modal Generative Adversarial Networksfor Common Representation Learning 0.Summary  0.1 Structure    (1) Generative Model:      VGG19(image) | word CNN(text)">
+<meta name="twitter:title" content="Learning Two-Branch Neural Networks for Image-Text Matching Tasks">
+<meta name="twitter:description" content="a brief introduction to Learning Two-Branch Neural Networksfor Image-Text Matching Tasks  Summary(1) According to different ways to learn the similarity score, this paperpropose two variants of two-br">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://shilrley6.github.io/2019/05/20/CM-GANs-Cross-modal-Generative-Adversarial-Networksfor-Common-Representation-Learning/">
+  <link rel="canonical" href="https://shilrley6.github.io/2019/05/22/Learning-Two-Branch-Neural-Networksfor-Image-Text-Matching-Tasks/">
 
 
 
 
 
-  <title>CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Learning Two-Branch Neural Networks for Image-Text Matching Tasks | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -274,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/20/CM-GANs-Cross-modal-Generative-Adversarial-Networksfor-Common-Representation-Learning/">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/22/Learning-Two-Branch-Neural-Networksfor-Image-Text-Matching-Tasks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -291,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning</h1>
+          <h1 class="post-title" itemprop="name headline">Learning Two-Branch Neural Networks for Image-Text Matching Tasks</h1>
         
 
         <div class="post-meta">
@@ -303,8 +303,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-20T15:16:53+08:00">
-                2019-05-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-22T15:58:09+08:00">
+                2019-05-22
               </time>
             
 
@@ -341,34 +341,21 @@
       
 
       
-        <p>a brief introduction to <em>CM-GANs: Cross-modal Generative Adversarial Networks<br>for Common Representation Learning</em></p>
-<p>0.Summary<br>  0.1 Structure<br>    (1) Generative Model:<br>      VGG19(image) | word CNN(text)<br>      -&gt; fully connected layer(first) + batch normalization + RELU<br>      -&gt; fully connected layer(second) + batch normalization + RELU</p>
-<pre><code>  + weight-sharing between 2 paths
-  -&gt; Common representations -&gt; softmax layer &amp; decoder
-  Decoder: fully connected layer(first) + batch normalization + RELU
-  -&gt; fully connected layer(second)
-  -&gt; text | image reconstructions
-(2) Intra-modality Discriminative Model:
-  reconstructions -&gt; fully connected layer -&gt; sigmoid layer
-  original representation: 1 | reconstructed representation: 0
-(3) Inter-modality Discriminative Model:
-  a. two-pathway network
-  b. input: common representation + original representation
-  c. each path: softmax layer
-    -&gt; fully connected layer(first) + batch normalization + RELU
-    -&gt; fully connected layer(second) (out: single-value predicted score)
-    -&gt; sigmoid layer
-  d. Label:
-    Image:
-      image common representation: 1
-      corresponding text representation
-        &amp; mismatched image common representation: 0
-    Text:
-      text common representation: 1
-      corresponding image representation
-        &amp; mismatched text common representation: 0
-0.2 
-</code></pre>
+        <p>a brief introduction to <em>Learning Two-Branch Neural Networks<br>for Image-Text Matching Tasks</em></p>
+<ol>
+<li><p>Summary<br>(1) According to different ways to learn the similarity score, this paper<br>propose two variants of two-branch networks that follow these two strategies.<br>(2) 2-branch: extract image and text features respectively.<br>(3) Embedding network:  map images and text -&gt; explicit joint embedding space<br>(4) Similarity Network:<br> frame image/text correspondence as a binary classification problem.<br>(given a pair, the goal is to output the probability that the two items match.)</p>
+</li>
+<li><p>introduction<br>(1) Tasks: phrase localization &amp; bi-directional image-sentence retrieval<br>(2) Network architecture:<br>extract image/text features -&gt; fuse them -&gt; similarity score<br>(3) Embedding network:<br> a. Goal: map image and text features<br> b. Each branch: data -&gt; nonlinearities(2 layers) -&gt; L2 normalization<br> c. Loss function: bi-directional ranking loss</p>
+<pre><code>               + neighborhood-preserving constraints
+</code></pre><p>(4) Similarity network:<br> a.Structure: nonlinearities(2 layers) -&gt; element-wise product<br>-&gt; single vector -&gt; fully connected layers<br> b. Loss function: logistic regression loss<br> c. Weakness(compared to Embedding net): it no longer has an explicit<br>embedding space and cannot encode structural constraints.</p>
+</li>
+<li><p>Embedding and Similarity networks<br>3.1 Overview of Image-Text Tasks<br>embedding network is suitable for image-text retrieval<br>3.2 Embedding network<br>SGD + Bi-directional ranking loss</p>
+<ul>
+<li>Neighborhood-preserving constraint + Neighborhood sampling</li>
+</ul>
+</li>
+</ol>
+
       
     </div>
     
@@ -392,8 +379,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/20/Stacked-Cross-Attention-forImage-Text-Matching/" rel="next" title="Stacked Cross Attention for Image-Text Matching">
-                <i class="fa fa-chevron-left"></i> Stacked Cross Attention for Image-Text Matching
+              <a href="/2019/05/20/CM-GANs-Cross-modal-Generative-Adversarial-Networksfor-Common-Representation-Learning/" rel="next" title="CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning">
+                <i class="fa fa-chevron-left"></i> CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning
               </a>
             
           </div>
@@ -402,8 +389,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/22/Learning-Two-Branch-Neural-Networksfor-Image-Text-Matching-Tasks/" rel="prev" title="Learning Two-Branch Neural Networks for Image-Text Matching Tasks">
-                Learning Two-Branch Neural Networks for Image-Text Matching Tasks <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/22/Multimodal-Convolutional-Neural-Networks-for-Matching-Image-and-Sentence/" rel="prev" title="Multimodal Convolutional Neural Networks for Matching Image and Sentence">
+                Multimodal Convolutional Neural Networks for Matching Image and Sentence <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

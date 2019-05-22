@@ -271,6 +271,262 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/22/Multimodal-Convolutional-Neural-Networks-for-Matching-Image-and-Sentence/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/22/Multimodal-Convolutional-Neural-Networks-for-Matching-Image-and-Sentence/" itemprop="url">Multimodal Convolutional Neural Networks for Matching Image and Sentence</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-22T16:36:45+08:00">
+                2019-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>a brief introduction to <em>Multimodal Convolutional Neural Networks<br>for Matching Image and Sentence</em></p>
+<ol>
+<li>Summary<br>(1) m-CNN provides an end-to-end framework with convolutional architectures to<br>exploit image representation, word composition, and the matching relations<br>between the two modalities.<br>(2) Component: image CNN &amp; matching CNN &amp; MLP </li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/22/Learning-Two-Branch-Neural-Networksfor-Image-Text-Matching-Tasks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/22/Learning-Two-Branch-Neural-Networksfor-Image-Text-Matching-Tasks/" itemprop="url">Learning Two-Branch Neural Networks for Image-Text Matching Tasks</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-22T15:58:09+08:00">
+                2019-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>a brief introduction to <em>Learning Two-Branch Neural Networks<br>for Image-Text Matching Tasks</em></p>
+<ol>
+<li><p>Summary<br>(1) According to different ways to learn the similarity score, this paper<br>propose two variants of two-branch networks that follow these two strategies.<br>(2) 2-branch: extract image and text features respectively.<br>(3) Embedding network:  map images and text -&gt; explicit joint embedding space<br>(4) Similarity Network:<br> frame image/text correspondence as a binary classification problem.<br>(given a pair, the goal is to output the probability that the two items match.)</p>
+</li>
+<li><p>introduction<br>(1) Tasks: phrase localization &amp; bi-directional image-sentence retrieval<br>(2) Network architecture:<br>extract image/text features -&gt; fuse them -&gt; similarity score<br>(3) Embedding network:<br> a. Goal: map image and text features<br> b. Each branch: data -&gt; nonlinearities(2 layers) -&gt; L2 normalization<br> c. Loss function: bi-directional ranking loss</p>
+<pre><code>               + neighborhood-preserving constraints
+</code></pre><p>(4) Similarity network:<br> a.Structure: nonlinearities(2 layers) -&gt; element-wise product<br>-&gt; single vector -&gt; fully connected layers<br> b. Loss function: logistic regression loss<br> c. Weakness(compared to Embedding net): it no longer has an explicit<br>embedding space and cannot encode structural constraints.</p>
+</li>
+<li><p>Embedding and Similarity networks<br>3.1 Overview of Image-Text Tasks<br>embedding network is suitable for image-text retrieval<br>3.2 Embedding network<br>SGD + Bi-directional ranking loss</p>
+<ul>
+<li>Neighborhood-preserving constraint + Neighborhood sampling</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/20/CM-GANs-Cross-modal-Generative-Adversarial-Networksfor-Common-Representation-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -368,6 +624,7 @@
       text common representation: 1
       corresponding image representation
         &amp; mismatched text common representation: 0
+0.2 
 </code></pre>
           
         
@@ -1118,7 +1375,7 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
