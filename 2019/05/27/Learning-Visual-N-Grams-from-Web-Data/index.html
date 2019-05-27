@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="a brief introduction to Stacked Cross Attention for Image-Text Matching 0.Summary  (1) Image representation: bottom-up attention + Faster-RNN + ResNet101  (2) Sentence represetation: one-hot vector (w">
+<meta name="description" content="a brief introduction to Learning Visual N-Grams from Web Data  Summary(1) Dataset: YFCC100M (images-user comments pairs)[30 million](2) Image Feature: ResNet34(3) Loss function: Naive n-gram loss(mult">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Stacked Cross Attention for Image-Text Matching">
-<meta property="og:url" content="https://shilrley6.github.io/2019/05/20/Stacked-Cross-Attention-forImage-Text-Matching/index.html">
+<meta property="og:title" content="Learning Visual N-Grams from Web Data">
+<meta property="og:url" content="https://shilrley6.github.io/2019/05/27/Learning-Visual-N-Grams-from-Web-Data/index.html">
 <meta property="og:site_name" content="Liu Liu">
-<meta property="og:description" content="a brief introduction to Stacked Cross Attention for Image-Text Matching 0.Summary  (1) Image representation: bottom-up attention + Faster-RNN + ResNet101  (2) Sentence represetation: one-hot vector (w">
+<meta property="og:description" content="a brief introduction to Learning Visual N-Grams from Web Data  Summary(1) Dataset: YFCC100M (images-user comments pairs)[30 million](2) Image Feature: ResNet34(3) Loss function: Naive n-gram loss(mult">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-20T08:00:50.122Z">
+<meta property="og:updated_time" content="2019-05-27T06:26:55.937Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Stacked Cross Attention for Image-Text Matching">
-<meta name="twitter:description" content="a brief introduction to Stacked Cross Attention for Image-Text Matching 0.Summary  (1) Image representation: bottom-up attention + Faster-RNN + ResNet101  (2) Sentence represetation: one-hot vector (w">
+<meta name="twitter:title" content="Learning Visual N-Grams from Web Data">
+<meta name="twitter:description" content="a brief introduction to Learning Visual N-Grams from Web Data  Summary(1) Dataset: YFCC100M (images-user comments pairs)[30 million](2) Image Feature: ResNet34(3) Loss function: Naive n-gram loss(mult">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://shilrley6.github.io/2019/05/20/Stacked-Cross-Attention-forImage-Text-Matching/">
+  <link rel="canonical" href="https://shilrley6.github.io/2019/05/27/Learning-Visual-N-Grams-from-Web-Data/">
 
 
 
 
 
-  <title>Stacked Cross Attention for Image-Text Matching | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Learning Visual N-Grams from Web Data | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -274,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/20/Stacked-Cross-Attention-forImage-Text-Matching/">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/27/Learning-Visual-N-Grams-from-Web-Data/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -291,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Stacked Cross Attention for Image-Text Matching</h1>
+          <h1 class="post-title" itemprop="name headline">Learning Visual N-Grams from Web Data</h1>
         
 
         <div class="post-meta">
@@ -303,8 +303,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-20T15:00:42+08:00">
-                2019-05-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-27T11:58:55+08:00">
+                2019-05-27
               </time>
             
 
@@ -341,12 +341,20 @@
       
 
       
-        <p>a brief introduction to <em>Stacked Cross Attention for Image-Text Matching</em></p>
-<p>0.Summary<br>  (1) Image representation: bottom-up attention + Faster-RNN + ResNet101<br>  (2) Sentence represetation: one-hot vector (word -&gt; 300-dimentional vector)<br>    =&gt; bi-directional GRU(AVG forward &amp; backword)<br>  (3) Common representation: SCA model<br>    a. Input: a set of image features(image feature -&gt; a region in an image)</p>
-<pre><code>+ a set of word features (word feature -&gt; a word in a sentence)
-b. Output: similarity score
-c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
-</code></pre><p>  (4) Loss function: hinge-based triplet ranking loss(like vsepp)<br>    -&gt; finding the hardest negatives based on the similarity<br>  (5) Experiments:<br>    a.Datasets: COCO | Flickr 30k</p>
+        <p>a brief introduction to <em>Learning Visual N-Grams from Web Data</em></p>
+<ol>
+<li><p>Summary<br>(1) Dataset: YFCC100M (images-user comments pairs)[30 million]<flickr><br>(2) Image Feature: ResNet34<br>(3) Loss function: Naive n-gram loss(multi-class logistic loss) &amp;&amp; Jelinek-Mercer (J-M) loss(Jelinek-Mercer smoothing)<br>(4) Experiment setting: SGD | batch-size:128 | epoch: 10 |<br>learning rate: 0.1[learning rate is divided by 10 whenever the training loss stabilizes (until a minimum learning rate of 0.001)]<br>(5) Relating Images and Captions:<br> Image retrieval: rank images according to their log-likelihood for a particular caption<br> Caption retrieval: ranking all captions in the test set according to their log-likelihood under the model.</flickr></p>
+</li>
+<li><p>Introduction<br>(1) Visual n-gram models: can predict arbitrary phrases that are relevant to the content of an image.<br>(2) Model Structure: feed-forward convolutional networks + new loss functions(inspired by n-gram models commonly used in language modeling)<br>(3) Follow <em>Learning visual features from large weakly supervised data</em><br>(4) Bridge the semantic gap between vision and language: predict phrases that are relevant to the contents of an image<br>(5) Loss function: optimizes trainable parameters for frequent n-grams, whereas for infrequent n-grams, the loss is dominated by the predicted likelihood of smaller “sub-grams”</p>
+</li>
+<li><p>Learning Visual N-Gram Models<br>3.1 Dataset<br>(1) YFCC100M: 99.2 million images + associated multi-lingual user comments<br>(2) Utilization: 30 million images and English comments<br>(3) Image pretreatment: rescale to 256 X 256 pixels (using bicubic interpolation) -&gt; crop the central 224 x 224 -&gt; subtract the mean pixel value of each image -&gt; divide by the standard deviation of the pixel values.<br>(4) Text pretreatment: remove punctuations -&gt;  add [BEGIN] and [END] tokens at the beginning and end of each sentence<br>(5) Building dictionary of all English n-grams(n: 1 ~ 5): more than 1, 000 occurrences in the 30 million English comments. -&gt; 142, 806 n-grams: 22, 869 unigrams, 56, 830 bigrams, 32, 560 trigrams, 17, 351 four-grams, and 13, 196 five-grams</p>
+</li>
+</ol>
+<p>3.2 Loss functions<br>3.2.1 Naive n-gram loss<br>  (1) measures the (negative) log-likelihood of in-dictionary n-grams that are present in a comment<br>  (2) multi-class logistic loss<br>  (3) the loss: the sum of all n-grams that appear in the sentence w &amp;&amp; ignore n-grams that do not appear in the dictionary<br>  (4) Problem: cannot do language modeling -&gt; Reason: it does not model a conditional probability<br>-&gt; Solution: an ad-hoc conditional distribution based on the scores produced by the model at prediction time using a “stupid” back-off model<br>  (5) Drawbacks:<br>    1) it ignores out-of-dictionary n-grams entirely during training<br>    2) the parameters E that correspond to infrequent in-dictionary words are difficult to pin down</p>
+<p>3.2.2 Jelinek-Mercer (J-M) loss</p>
+<ol>
+<li>Experiments<br>4.3 Relating Images and Captions</li>
+</ol>
 
       
     </div>
@@ -371,8 +379,8 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/17/Order-Embeddings-of-Images-and-Language/" rel="next" title="Order-Embeddings of Images and Language">
-                <i class="fa fa-chevron-left"></i> Order-Embeddings of Images and Language
+              <a href="/2019/05/22/Multimodal-Convolutional-Neural-Networks-for-Matching-Image-and-Sentence/" rel="next" title="Multimodal Convolutional Neural Networks for Matching Image and Sentence">
+                <i class="fa fa-chevron-left"></i> Multimodal Convolutional Neural Networks for Matching Image and Sentence
               </a>
             
           </div>
@@ -380,10 +388,6 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/20/CM-GANs-Cross-modal-Generative-Adversarial-Networksfor-Common-Representation-Learning/" rel="prev" title="CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning">
-                CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
