@@ -271,6 +271,291 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/06/24/Pytorch-Moudule/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/24/Pytorch-Moudule/" itemprop="url">Pytorch Moudule</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-24T22:04:24+08:00">
+                2019-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Containers:</p>
+<p>torch.nn.module<br><em>import torch.nn as nn<br>import torch.nn.functional as F</em></p>
+<ol>
+<li>Core Function<br>(1) <strong>add_module(name,module)</strong>: add child module to current module; can be obtained by its name;<br>Eg:  self.add_module(“conv”, nn.Conv2d(10, 20, 4))<br> can be replaced by -&gt; self.conv = nn.Conv2d(10, 20, 4)<br>(2) <strong>forward(*input)</strong>: should be rewrited in user-difined module;<br>(3) <strong>state_dict(destination=None)</strong>: return a dictionary; save all the states of the module;<br>(4) <strong>load_state_dict(state_dict)</strong>:load the parameters of the module</li>
+</ol>
+<p>2.<br>(1) <strong>parameters(memo=None)</strong>:return an iterator involving all parameters in the module; often used as the parameter for<br>Function Optimizer;<br>(2) <strong>children()</strong>:<br>(3) <strong>name_children()</strong>:<br>(4) <strong>modules()</strong>:<br>(5) <strong>named_modules()</strong>:</p>
+<p>3.<br>change parameters &amp; buffers to XX<br>(1) <strong>cpu(device_id=None)</strong>：<br>(2) <strong>cuda(device_id=None)</strong>：<br>(3) <strong>double()</strong>:<br>(4) <strong>float()</strong>：<br>(5) <strong>half()</strong>：</p>
+<ol>
+<li><p>Setting<br>(1) <strong>train(mode=True)</strong>：change the module to trainging mode; only inflence dropout &amp; batchNorm;<br>(2) <strong>eval()</strong>: change to module to evaluation mode; only inflence dropout &amp; batchNorm;<br>(3) <strong>zero_grad()</strong>: set all grads in the module as 0;</p>
+</li>
+<li><p>Register<br>(1) <strong>register_parameter(name, param)</strong>: add parameter to module; the param can be obtained by name;<br>(2) <strong>register_forward_hook(hook)</strong>：register a forward hook to module; the hook will be used every time the forward() is used;　<br>(3) <strong>register_backward_hook(hook)</strong>：<br>(4) <strong>register_buffer(name, tensor)</strong>：add a persistent buffer to module; often used to save a state which doesn’t need to regard as module params;</p>
+</li>
+</ol>
+<p>torch.nn.Sequential(*args)<br>  add layers to Containers<br>Eg: # Example of using Sequential<br>    model = nn.Sequential(<br>              nn.Conv2d(1,20,5),<br>              nn.ReLU(),<br>              nn.Conv2d(20,64,5),<br>              nn.ReLU()<br>              )</p>
+<pre><code># Example of using Sequential with OrderedDict
+model = nn.Sequential(OrderedDict([
+          (&#39;conv1&#39;, nn.Conv2d(1,20,5)),
+          (&#39;relu1&#39;, nn.ReLU()),
+          (&#39;conv2&#39;, nn.Conv2d(20,64,5)),
+          (&#39;relu2&#39;, nn.ReLU())
+          ]))
+</code></pre><p>Reference:</p>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/34616199" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34616199</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/28/Ubuntu-software-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/28/Ubuntu-software-install/" itemprop="url">Ubuntu software install</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-28T21:57:29+08:00">
+                2019-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Anaconda3 + Cuda9.0 + Cudnn7.1.4 + Pytorch1.1 + Pycocotools</p>
+<ol>
+<li><p>Anaconda3<br>Home: <a href="https://www.anaconda.com/" target="_blank" rel="noopener">https://www.anaconda.com/</a><br>Linux Python3.7 Version -&gt; bash .run File<br>use ‘conda list’ to verify if install successfull</p>
+</li>
+<li><p>Cuda9.0<br>Home: <a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-toolkit-archive</a><br>Select cuda9.0 Linux | x86_64 | Ubuntu | 16.04 | run<br>Run ‘sudo sh cuda_9.0*.run’(follow the steps in website)<br>While installation:<br> choose ‘no’ to the second question(refuse to install GPU driver)<br>Mistake solution:<br> (1)msg:’Missing recommended library: libGLU.so</p>
+<pre><code>     Missing recommended library: libX11.so
+     Missing recommended library: libXi.so
+     Missing recommended library: libXmu.so&#39;
+</code></pre><p>   solution: sudo apt-get install freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev<br>Environment Variables:<br> sudo vi ~/.bashrc</p>
+<h1 id="add-following-at-the-end-of-the-file"><a href="#add-following-at-the-end-of-the-file" class="headerlink" title="add following at the end of the file"></a>add following at the end of the file</h1><p> export PATH=/usr/local/cuda-9.0/bin:$PATH<br> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64 #注意冒号</p>
+<h1 id="update-configuration"><a href="#update-configuration" class="headerlink" title="update configuration"></a>update configuration</h1><p> sudo source ~/.bashrc</p>
+<p>Verify if install successfull:<br> cd  /usr/local/cuda-9.0/samples/1_Utilities/deviceQuery<br> sudo make<br> ./deviceQuery</p>
+<h1 id="if-succeed-the-imformation-about-GPU-will-be-show-on-the-terminal"><a href="#if-succeed-the-imformation-about-GPU-will-be-show-on-the-terminal" class="headerlink" title="if succeed, the imformation about GPU will be show on the terminal"></a>if succeed, the imformation about GPU will be show on the terminal</h1><p>Check the version:<br> cat /usr/local/cuda/version.txt</p>
+</li>
+<li><p>Cudnn 7.1.4<br>Home: <a href="https://developer.nvidia.com/rdp/cudnn-archive" target="_blank" rel="noopener">https://developer.nvidia.com/rdp/cudnn-archive</a><br>choose ‘7.1.4 for Linux’<br>download the .tgz File<br>Cmd:<br> tar -zxvf cudnn-9.0-linux-x64-v7.1.tgz<br> cd cuda<br> sudo cp lib64/lib<em> /usr/local/cuda-9.0/lib64/<br> sudo cp include/cudnn.h /usr/local/cuda-9.0/include/<br> sudo cp cuda/lib64/libcudnn</em> /usr/local/cuda-9.0/lib64<br> sudo chmod a+r /usr/local/cuda-9.0/include/cudnn.h /usr/local/cuda-9.0/lib64/libcudnn*</p>
+<h1 id="update-the-link"><a href="#update-the-link" class="headerlink" title="update the link"></a>update the link</h1><p> cd /usr/local/cuda-9.0/lib64/<br> sudo chmod +r libcudnn.so.7.1.3  #use ‘ls libcud*’ -&gt; comfirm the version of .so<br> sudo ln -sf libcudnn.so.7.1.3. libcudnn.so.7<br> sudo ln -sf libcudnn.so.7 libcudnn.so<br> sudo ldconfig<br>Check the Version:<br> cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</p>
+</li>
+<li><p>Pytorch 1.1<br>Home: <a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">https://pytorch.org/get-started/locally/</a><br>Select the related version<br>use the cmd provided by the web</p>
+</li>
+</ol>
+<p>5.Pycocotools<br>  git clone <a href="https://github.com/cocodataset/cocoapi.git" target="_blank" rel="noopener">https://github.com/cocodataset/cocoapi.git</a><br>  cd cocoapi/PythonAPI<br>  make<br>  pip install pycocotools</p>
+<p>Reference: <a href="https://zhuanlan.zhihu.com/p/44183691" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/44183691</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/27/Learning-Visual-N-Grams-from-Web-Data/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1334,137 +1619,13 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/03/30/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/30/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-30T21:56:27+08:00">
-                2019-03-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1508,7 +1669,7 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

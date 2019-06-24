@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liu Liu">
-<meta property="og:url" content="https://shilrley6.github.io/archives/2019/04/index.html">
+<meta name="description" content="Containers: torch.nn.moduleimport torch.nn as nnimport torch.nn.functional as F  Core Function(1) add_module(name,module): add child module to current module; can be obtained by its name;Eg:  self.add">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorch Moudule">
+<meta property="og:url" content="https://shilrley6.github.io/2019/06/24/Pytorch-Moudule/index.html">
 <meta property="og:site_name" content="Liu Liu">
+<meta property="og:description" content="Containers: torch.nn.moduleimport torch.nn as nnimport torch.nn.functional as F  Core Function(1) add_module(name,module): add child module to current module; can be obtained by its name;Eg:  self.add">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-24T14:49:29.580Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liu Liu">
+<meta name="twitter:title" content="Pytorch Moudule">
+<meta name="twitter:description" content="Containers: torch.nn.moduleimport torch.nn as nnimport torch.nn.functional as F  Core Function(1) add_module(name,module): add child module to current module; can be obtained by its name;Eg:  self.add">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://shilrley6.github.io/archives/2019/04/">
+  <link rel="canonical" href="https://shilrley6.github.io/2019/06/24/Pytorch-Moudule/">
 
 
 
 
 
-  <title>Archive | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Pytorch Moudule | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -140,7 +144,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-archive">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -256,72 +260,165 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        Um..! 11 posts in total. Keep on posting.
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/06/24/Pytorch-Moudule/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/06/Webly-Supervised-Joint-Embedding-for-Cross-Modal-Image-Text-Retrieval/" itemprop="url">
-              
-                <span itemprop="name">Webly Supervised Joint Embedding for Cross-Modal Image-Text Retrieval</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Pytorch Moudule</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-06T20:52:36+08:00" content="2019-04-06">
-          04-06
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-24T22:04:24+08:00">
+                2019-06-24
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <p>Containers:</p>
+<p>torch.nn.module<br><em>import torch.nn as nn<br>import torch.nn.functional as F</em></p>
+<ol>
+<li>Core Function<br>(1) <strong>add_module(name,module)</strong>: add child module to current module; can be obtained by its name;<br>Eg:  self.add_module(“conv”, nn.Conv2d(10, 20, 4))<br> can be replaced by -&gt; self.conv = nn.Conv2d(10, 20, 4)<br>(2) <strong>forward(*input)</strong>: should be rewrited in user-difined module;<br>(3) <strong>state_dict(destination=None)</strong>: return a dictionary; save all the states of the module;<br>(4) <strong>load_state_dict(state_dict)</strong>:load the parameters of the module</li>
+</ol>
+<p>2.<br>(1) <strong>parameters(memo=None)</strong>:return an iterator involving all parameters in the module; often used as the parameter for<br>Function Optimizer;<br>(2) <strong>children()</strong>:<br>(3) <strong>name_children()</strong>:<br>(4) <strong>modules()</strong>:<br>(5) <strong>named_modules()</strong>:</p>
+<p>3.<br>change parameters &amp; buffers to XX<br>(1) <strong>cpu(device_id=None)</strong>：<br>(2) <strong>cuda(device_id=None)</strong>：<br>(3) <strong>double()</strong>:<br>(4) <strong>float()</strong>：<br>(5) <strong>half()</strong>：</p>
+<ol>
+<li><p>Setting<br>(1) <strong>train(mode=True)</strong>：change the module to trainging mode; only inflence dropout &amp; batchNorm;<br>(2) <strong>eval()</strong>: change to module to evaluation mode; only inflence dropout &amp; batchNorm;<br>(3) <strong>zero_grad()</strong>: set all grads in the module as 0;</p>
+</li>
+<li><p>Register<br>(1) <strong>register_parameter(name, param)</strong>: add parameter to module; the param can be obtained by name;<br>(2) <strong>register_forward_hook(hook)</strong>：register a forward hook to module; the hook will be used every time the forward() is used;　<br>(3) <strong>register_backward_hook(hook)</strong>：<br>(4) <strong>register_buffer(name, tensor)</strong>：add a persistent buffer to module; often used to save a state which doesn’t need to regard as module params;</p>
+</li>
+</ol>
+<p>torch.nn.Sequential(*args)<br>  add layers to Containers<br>Eg: # Example of using Sequential<br>    model = nn.Sequential(<br>              nn.Conv2d(1,20,5),<br>              nn.ReLU(),<br>              nn.Conv2d(20,64,5),<br>              nn.ReLU()<br>              )</p>
+<pre><code># Example of using Sequential with OrderedDict
+model = nn.Sequential(OrderedDict([
+          (&#39;conv1&#39;, nn.Conv2d(1,20,5)),
+          (&#39;relu1&#39;, nn.ReLU()),
+          (&#39;conv2&#39;, nn.Conv2d(20,64,5)),
+          (&#39;relu2&#39;, nn.ReLU())
+          ]))
+</code></pre><p>Reference:</p>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/34616199" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34616199</a></li>
+</ol>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/28/Ubuntu-software-install/" rel="next" title="Ubuntu software install">
+                <i class="fa fa-chevron-left"></i> Ubuntu software install
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -329,6 +426,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -535,6 +636,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
