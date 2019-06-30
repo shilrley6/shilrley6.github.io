@@ -79,17 +79,14 @@
 
 
 
-<meta name="description" content="Anaconda3 + Cuda9.0 + Cudnn7.1.4 + Pytorch1.1 + Pycocotools  Anaconda3Home: https://www.anaconda.com/Linux Python3.7 Version -&amp;gt; bash .run Fileuse ‘conda list’ to verify if install successfull  Cuda">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu software install">
-<meta property="og:url" content="https://shilrley6.github.io/2019/05/28/Ubuntu-software-install/index.html">
+<meta property="og:title" content="X-path tips">
+<meta property="og:url" content="https://shilrley6.github.io/2019/06/30/X-path-tips/index.html">
 <meta property="og:site_name" content="Liu Liu">
-<meta property="og:description" content="Anaconda3 + Cuda9.0 + Cudnn7.1.4 + Pytorch1.1 + Pycocotools  Anaconda3Home: https://www.anaconda.com/Linux Python3.7 Version -&amp;gt; bash .run Fileuse ‘conda list’ to verify if install successfull  Cuda">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-28T15:06:18.967Z">
+<meta property="og:updated_time" content="2019-06-30T03:55:38.736Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu software install">
-<meta name="twitter:description" content="Anaconda3 + Cuda9.0 + Cudnn7.1.4 + Pytorch1.1 + Pycocotools  Anaconda3Home: https://www.anaconda.com/Linux Python3.7 Version -&amp;gt; bash .run Fileuse ‘conda list’ to verify if install successfull  Cuda">
+<meta name="twitter:title" content="X-path tips">
 
 
 
@@ -119,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="https://shilrley6.github.io/2019/05/28/Ubuntu-software-install/">
+  <link rel="canonical" href="https://shilrley6.github.io/2019/06/30/X-path-tips/">
 
 
 
 
 
-  <title>Ubuntu software install | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>X-path tips | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -274,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/28/Ubuntu-software-install/">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/06/30/X-path-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -291,7 +288,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Ubuntu software install</h1>
+          <h1 class="post-title" itemprop="name headline">X-path tips</h1>
         
 
         <div class="post-meta">
@@ -303,8 +300,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-28T21:57:29+08:00">
-                2019-05-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-30T11:55:36+08:00">
+                2019-06-30
               </time>
             
 
@@ -341,29 +338,7 @@
       
 
       
-        <p>Anaconda3 + Cuda9.0 + Cudnn7.1.4 + Pytorch1.1 + Pycocotools</p>
-<ol>
-<li><p>Anaconda3<br>Home: <a href="https://www.anaconda.com/" target="_blank" rel="noopener">https://www.anaconda.com/</a><br>Linux Python3.7 Version -&gt; bash .run File<br>use ‘conda list’ to verify if install successfull</p>
-</li>
-<li><p>Cuda9.0<br>Home: <a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-toolkit-archive</a><br>Select cuda9.0 Linux | x86_64 | Ubuntu | 16.04 | run<br>Run ‘sudo sh cuda_9.0*.run’(follow the steps in website)<br>While installation:<br> choose ‘no’ to the second question(refuse to install GPU driver)<br>Mistake solution:<br> (1)msg:’Missing recommended library: libGLU.so</p>
-<pre><code>     Missing recommended library: libX11.so
-     Missing recommended library: libXi.so
-     Missing recommended library: libXmu.so&#39;
-</code></pre><p>   solution: sudo apt-get install freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev<br>Environment Variables:<br> sudo vi ~/.bashrc</p>
-<h1 id="add-following-at-the-end-of-the-file"><a href="#add-following-at-the-end-of-the-file" class="headerlink" title="add following at the end of the file"></a>add following at the end of the file</h1><p> export PATH=/usr/local/cuda-9.0/bin:$PATH<br> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64 #注意冒号</p>
-<h1 id="update-configuration"><a href="#update-configuration" class="headerlink" title="update configuration"></a>update configuration</h1><p> sudo source ~/.bashrc</p>
-<p>Verify if install successfull:<br> cd  /usr/local/cuda-9.0/samples/1_Utilities/deviceQuery<br> sudo make<br> ./deviceQuery</p>
-<h1 id="if-succeed-the-imformation-about-GPU-will-be-show-on-the-terminal"><a href="#if-succeed-the-imformation-about-GPU-will-be-show-on-the-terminal" class="headerlink" title="if succeed, the imformation about GPU will be show on the terminal"></a>if succeed, the imformation about GPU will be show on the terminal</h1><p>Check the version:<br> cat /usr/local/cuda/version.txt</p>
-</li>
-<li><p>Cudnn 7.1.4<br>Home: <a href="https://developer.nvidia.com/rdp/cudnn-archive" target="_blank" rel="noopener">https://developer.nvidia.com/rdp/cudnn-archive</a><br>choose ‘7.1.4 for Linux’<br>download the .tgz File<br>Cmd:<br> tar -zxvf cudnn-9.0-linux-x64-v7.1.tgz<br> cd cuda<br> sudo cp lib64/lib<em> /usr/local/cuda-9.0/lib64/<br> sudo cp include/cudnn.h /usr/local/cuda-9.0/include/<br> sudo cp cuda/lib64/libcudnn</em> /usr/local/cuda-9.0/lib64<br> sudo chmod a+r /usr/local/cuda-9.0/include/cudnn.h /usr/local/cuda-9.0/lib64/libcudnn*</p>
-<h1 id="update-the-link"><a href="#update-the-link" class="headerlink" title="update the link"></a>update the link</h1><p> cd /usr/local/cuda-9.0/lib64/<br> sudo chmod +r libcudnn.so.7.1.3  #use ‘ls libcud*’ -&gt; comfirm the version of .so<br> sudo ln -sf libcudnn.so.7.1.3. libcudnn.so.7<br> sudo ln -sf libcudnn.so.7 libcudnn.so<br> sudo ldconfig<br>Check the Version:<br> cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</p>
-</li>
-<li><p>Pytorch 1.1<br>Home: <a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">https://pytorch.org/get-started/locally/</a><br>Select the related version<br>use the cmd provided by the web</p>
-</li>
-</ol>
-<p>5.Pycocotools<br>  git clone <a href="https://github.com/cocodataset/cocoapi.git" target="_blank" rel="noopener">https://github.com/cocodataset/cocoapi.git</a><br>  cd cocoapi/PythonAPI<br>  make<br>  pip install pycocotools</p>
-<p>Reference: <a href="https://zhuanlan.zhihu.com/p/44183691" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/44183691</a></p>
-
+        
       
     </div>
     
@@ -387,8 +362,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/27/Learning-Visual-N-Grams-from-Web-Data/" rel="next" title="Learning Visual N-Grams from Web Data">
-                <i class="fa fa-chevron-left"></i> Learning Visual N-Grams from Web Data
+              <a href="/2019/06/24/Pytorch-Moudule/" rel="next" title="Pytorch Moudule">
+                <i class="fa fa-chevron-left"></i> Pytorch Moudule
               </a>
             
           </div>
@@ -396,10 +371,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/24/Pytorch-Moudule/" rel="prev" title="Pytorch Moudule">
-                Pytorch Moudule <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -451,17 +422,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -513,22 +475,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#add-following-at-the-end-of-the-file"><span class="nav-number">1.</span> <span class="nav-text">add following at the end of the file</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#update-configuration"><span class="nav-number">2.</span> <span class="nav-text">update configuration</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if-succeed-the-imformation-about-GPU-will-be-show-on-the-terminal"><span class="nav-number">3.</span> <span class="nav-text">if succeed, the imformation about GPU will be show on the terminal</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#update-the-link"><span class="nav-number">4.</span> <span class="nav-text">update the link</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

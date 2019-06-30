@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[X-path tips]]></title>
+    <url>%2F2019%2F06%2F30%2FX-path-tips%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[Pytorch Moudule]]></title>
     <url>%2F2019%2F06%2F24%2FPytorch-Moudule%2F</url>
     <content type="text"><![CDATA[Containers: torch.nn.moduleimport torch.nn as nnimport torch.nn.functional as F Core Function(1) add_module(name,module): add child module to current module; can be obtained by its name;Eg: self.add_module(“conv”, nn.Conv2d(10, 20, 4)) can be replaced by -&gt; self.conv = nn.Conv2d(10, 20, 4)(2) forward(*input): should be rewrited in user-difined module;(3) state_dict(destination=None): return a dictionary; save all the states of the module;(4) load_state_dict(state_dict):load the parameters of the module 2.(1) parameters(memo=None):return an iterator involving all parameters in the module; often used as the parameter forFunction Optimizer;(2) children():(3) name_children():(4) modules():(5) named_modules(): 3.change parameters &amp; buffers to XX(1) cpu(device_id=None)：(2) cuda(device_id=None)：(3) double():(4) float()：(5) half()： Setting(1) train(mode=True)：change the module to trainging mode; only inflence dropout &amp; batchNorm;(2) eval(): change to module to evaluation mode; only inflence dropout &amp; batchNorm;(3) zero_grad(): set all grads in the module as 0; Register(1) register_parameter(name, param): add parameter to module; the param can be obtained by name;(2) register_forward_hook(hook)：register a forward hook to module; the hook will be used every time the forward() is used; (3) register_backward_hook(hook)：(4) register_buffer(name, tensor)：add a persistent buffer to module; often used to save a state which doesn’t need to regard as module params; torch.nn.Sequential(*args) add layers to ContainersEg: # Example of using Sequential model = nn.Sequential( nn.Conv2d(1,20,5), nn.ReLU(), nn.Conv2d(20,64,5), nn.ReLU() ) # Example of using Sequential with OrderedDict model = nn.Sequential(OrderedDict([ (&#39;conv1&#39;, nn.Conv2d(1,20,5)), (&#39;relu1&#39;, nn.ReLU()), (&#39;conv2&#39;, nn.Conv2d(20,64,5)), (&#39;relu2&#39;, nn.ReLU()) ])) Reference: https://zhuanlan.zhihu.com/p/34616199]]></content>
