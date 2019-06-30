@@ -347,16 +347,7 @@
 <li>search element<br>find_element_by_id<br>find_element_by_name<br>find_element_by_xpath<br>find_element_by_link_text<br>find_element_by_partial_link_text<br>find_element_by_tag_name<br>find_element_by_class_name<br>find_element_by_css_selector<br>ps: change ‘element’ to ‘elements’ -&gt; return a list of all elements found</li>
 <li>the [] begin with 1 (not 0)<br>[n]  &lt;==&gt; position() = n</li>
 <li>/child::xx &lt;==&gt; /xx<br>/child::* : find all child nodes</li>
-<li>Problem:<br> Unable to locate: “No Such Element Exception: Unable to locate element”<br>Solution:<br> (1) check path<br> (2) if the path is right, the possible reason is that the element is not fully loaded.<br> -&gt; a. use <strong>While()</strong>: break when the element is loaded.<pre><code>b. use **WebDriverWait(driver, time).until(element)**:
-eg: from selenium.webdriver.support.ui import WebDriverWait
-    wait = ui.WebDriverWait(driver,10)
-    wait.until(lambda driver: driver.find_element_by_xpath(&quot;path&quot;))
-    OR
-    element = WebDriverWait(driver, 10).until(
-      EC.presence_of_element_located((By.CLASS_NAME, &quot;search-show&quot;))
-      )
-    element.click()
-</code></pre></li>
+<li>Problem:<br>Unable to locate: “No Such Element Exception: Unable to locate element”<br>Solution:<br>(1) check path<br>(2) if the path is right, the possible reason is that the element is not fully loaded.<br>-&gt; a. use <strong>While()</strong>: break when the element is loaded.<br>b. use <strong>WebDriverWait(driver, time).until(element)</strong>:<br>eg: from selenium.webdriver.support.ui import WebDriverWait<br> wait = ui.WebDriverWait(driver,10)<br> wait.until(lambda driver: driver.find_element_by_xpath(“path”))<br> OR<br> element = WebDriverWait(driver, 10).until(<br>   EC.presence_of_element_located((By.CLASS_NAME, “search-show”)))<br> element.click()</li>
 </ol>
 
           
