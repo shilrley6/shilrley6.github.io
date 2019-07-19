@@ -79,17 +79,13 @@
 
 
 
-<meta name="description" content="a brief introduction to VSE++: Improving Visual-Semantic Embeddings with Hard Negatives  Abstract(1) inspired by: hard negative mining(2) propose: a new loss function (a simple change to common loss f">
-<meta property="og:type" content="article">
-<meta property="og:title" content="VSE++: Improving Visual-Semantic Embeddings with Hard Negatives">
-<meta property="og:url" content="https://shilrley6.github.io/2019/05/15/VSE-Improving-Visual-Semantic-Embeddings-with-Hard-Negatives/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Liu Liu">
+<meta property="og:url" content="https://shilrley6.github.io/archives/2019/07/index.html">
 <meta property="og:site_name" content="Liu Liu">
-<meta property="og:description" content="a brief introduction to VSE++: Improving Visual-Semantic Embeddings with Hard Negatives  Abstract(1) inspired by: hard negative mining(2) propose: a new loss function (a simple change to common loss f">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-15T11:28:54.333Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="VSE++: Improving Visual-Semantic Embeddings with Hard Negatives">
-<meta name="twitter:description" content="a brief introduction to VSE++: Improving Visual-Semantic Embeddings with Hard Negatives  Abstract(1) inspired by: hard negative mining(2) propose: a new loss function (a simple change to common loss f">
+<meta name="twitter:title" content="Liu Liu">
 
 
 
@@ -119,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="https://shilrley6.github.io/2019/05/15/VSE-Improving-Visual-Semantic-Embeddings-with-Hard-Negatives/">
+  <link rel="canonical" href="https://shilrley6.github.io/archives/2019/07/">
 
 
 
 
 
-  <title>VSE++: Improving Visual-Semantic Embeddings with Hard Negatives | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Archive | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -144,7 +140,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -260,173 +256,72 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        Um..! 13 posts in total. Keep on posting.
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/15/VSE-Improving-Visual-Semantic-Embeddings-with-Hard-Negatives/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">VSE++: Improving Visual-Semantic Embeddings with Hard Negatives</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2019/07/19/YFCC100M/" itemprop="url">
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span itemprop="name">YFCC100M</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-15T18:09:45+08:00">
-                2019-05-15
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-07-19T10:32:37+08:00" content="2019-07-19">
+          07-19
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>a brief introduction to <em>VSE++: Improving Visual-Semantic Embeddings with Hard Negatives</em></p>
-<ol>
-<li><p>Abstract<br>(1) inspired by: hard negative mining<br>(2) propose: a new loss function (a simple change to common loss function)<br>(3) combined with: fine tune + augmented data</p>
-</li>
-<li><p>Introduction<br>(1) basic problem: one of ranking<br>(2) augmented data + fine tune =&gt; improve Caption retrieval<br>(3) the benefit of a more powerful image encoder, with finetuning =&gt; is amplified with the use of the loss function</p>
-</li>
-<li><p>Learning Visual-Semantic Embeddings<br>(1) the target of I-T retrieval: ↑ R@k<br>(2) the Similarity funtion  -&gt; is defined on the joint embedding space<br>3.1 Visual-Semantic Embedding<br> (1) Image Encoder: VGG19 | ResNet152<br> (2) Word Encoder: GRU-based text encoder<br> (3) mappings into the joint embedding space -&gt; linear projections<br> (4) similarity function: inner product<br> (5) cumulative loss over training data:<br> (6) loss function for a single training exemplar: hinge-based triplet ranking loss<br>3.2 Emphasis on Hard Negatives<br> (1) hard negatives: the negatives closest to each training query.<br> (2) new loss function: (to emphasis the hardest negatives)<br> (3) how to find hardest negatives: find them within each mini-batch + random sampling of the mini-batches<br>3.3 Probability of Sampling the Hardest Negative<br> (1) for large enough mini-batchs, with high probability we sample negative captions that are harder than 90% of the entire training set<br> (2) Mini-batches size: 128</p>
-</li>
-<li><p>Experiments<br>(1) Image:<br> a. previous work:<br>   extract image features directly from FC7, the penultimate fully connected layer<br>   dimensionality: 4096 for VGG19 | 2048 for ResNet152<br> b. steps:<br>   resize the image to 256 X 256<br>   use either a single crop of size 224 X 224 or the mean of feature vectors for multiple crops of similar size<br> c. 1C | 10C | RC<br>   1C: one center crop<br>   10C: training with 10 crops at fixed locations<br>   RC: a single random crop (used in this paper)<br>(2) Caption:<br> a. dimensionality: 300 -&gt; GRU -&gt; 1024<br>(3) Normalization:<br> a. VSE: the caption embedding is normalized, while the image embedding is not.<br> b. VSEPP: normalize both<br> c. reason: Not normalizing the image embedding changes the importance of samples.<br> -&gt; not normalizing the image embedding helped the VSE0 to find a better solution.<br> However, VSE++ is not significantly affected by this normalization.<br>   3.2 Details of Training</p>
-<pre><code> (1) Adam optimizer
- (2) at most 30 epochs
-   a. Common: start -&gt; learning rate **0:0002** for 15 epochs -&gt; learning rate to **0:00002** for another 15 epochs
-   b. fine-tuned: trained for 30 epochs with a fixed image encoder -&gt; then learning rate to **0:00002** for another 15 epochs
- (3) margin: 0.2
- (4) solution to over-fitting: choosing the snapshot of the model that performs best on the validation set
-   The best snapshot: selected based on the sum of the recalls on the validation set
-</code></pre><p>   3.5 Improving Order Embeddings</p>
-<pre><code>   training set: 10C + RV
- (1) Order: copied from original paper *Order-Embeddings of Images and Language*
- (2)Order0: use training settings in orginal paper.
-   a. start training with a learning rate of **0:001** for 15 epochs
-   b. lower the learning rate to **0:0001** for another 15 epochs
-   c. margin: 0:05
-   d. takes the absolute value of embeddings before computing the similarity function
- (3)Order++: use the same learning schedule and margin as the experiments in this paper + MH loss function
-</code></pre><p>   3.6 Behavior of Loss Functions</p>
-<pre><code> MH loss depends on a smaller set of triplets compared to the SH loss
-</code></pre></li>
-</ol>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/04/06/Webly-Supervised-Joint-Embedding-for-Cross-Modal-Image-Text-Retrieval/" rel="next" title="Webly Supervised Joint Embedding for Cross-Modal Image-Text Retrieval">
-                <i class="fa fa-chevron-left"></i> Webly Supervised Joint Embedding for Cross-Modal Image-Text Retrieval
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/17/Order-Embeddings-of-Images-and-Language/" rel="prev" title="Order-Embeddings of Images and Language">
-                Order-Embeddings of Images and Language <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -434,10 +329,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -644,10 +535,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

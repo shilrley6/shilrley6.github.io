@@ -271,6 +271,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/07/19/YFCC100M/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/19/YFCC100M/" itemprop="url">YFCC100M</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-19T10:32:37+08:00">
+                2019-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>a brief introduction to YFCC100M<br><em>YFCC100M: The New Data in Multimedia Research</em></p>
+<p>1.Download:<br>(1) <a href="https://webscope.sandbox.yahoo.com/catalog.php?datatype=i&amp;did=67&amp;guccounter=1" target="_blank" rel="noopener">https://webscope.sandbox.yahoo.com/catalog.php?datatype=i&amp;did=67&amp;guccounter=1</a><br>  click the button <em>selcect this dataset</em> to add I3 into your request<br>(2) requisite: Yahoo account, AWS account<br>  (PS: when you register an AWS account, you need to input your credit/debit card ID.<br>  But it won’t deduct your money.)<br>(3) When applying the I3, you are supposed to fill in the AWS identifier, which is a 64-bit string.<br>  (where to get it: click the website provided in the ‘?’.  -&gt; click the last line which is account information)<br>(4) if you apply successfully, you will receive a mail.<br>(5) when you are informed to download the dataset(in a mail), you can follow the instructions offered in the mail.<br>(6) Notice: ‘aws configure’  -&gt; you will need to input your actionkey, secrect key, default region, and default output.<br>about the region: you should input the code provided in the page where you get your actionkey(IAM HOME).(eg: us_west_2 -&gt; Oregon; ap_northeast_1 -&gt; Tokyo)</p>
+<ol>
+<li>Metadata<ul>
+<li>Line number</li>
+<li>Photo/video identifier</li>
+<li>Photo/video hash</li>
+<li>User NSID</li>
+<li>User nickname</li>
+<li>Date taken</li>
+<li>Date uploaded</li>
+<li>Capture device</li>
+<li>Title</li>
+<li>Description</li>
+<li>User tags (comma-separated)</li>
+<li>Machine tags (comma-separated)</li>
+<li>Longitude</li>
+<li>Latitude</li>
+<li>Accuracy of the longitude and latitude coordinates (1=world level accuracy, …, 16=street level accuracy)</li>
+<li>Photo/video page URL</li>
+<li>Photo/video download URL</li>
+<li>License name</li>
+<li>License URL</li>
+<li>Photo/video server identifier</li>
+<li>Photo/video farm identifier</li>
+<li>Photo/video secret</li>
+<li>Photo/video secret original</li>
+<li>Extension of the original photo</li>
+<li>Photos/video marker (0 = photo, 1 = video)</li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/06/30/X-path-tips/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -347,7 +498,7 @@
 <li>search element<br>find_element_by_id<br>find_element_by_name<br>find_element_by_xpath<br>find_element_by_link_text<br>find_element_by_partial_link_text<br>find_element_by_tag_name<br>find_element_by_class_name<br>find_element_by_css_selector<br>ps: change ‘element’ to ‘elements’ -&gt; return a list of all elements found</li>
 <li>the [] begin with 1 (not 0)<br>[n]  &lt;==&gt; position() = n</li>
 <li>/child::xx &lt;==&gt; /xx<br>/child::* : find all child nodes</li>
-<li>Problem:<br>Unable to locate: “No Such Element Exception: Unable to locate element”<br>Solution:<br>(1) check path<br>(2) if the path is right, the possible reason is that the element is not fully loaded.<br>-&gt; a. use <strong>While()</strong>: break when the element is loaded.<br>b. use <strong>WebDriverWait(driver, time).until(element)</strong>:<br>eg: from selenium.webdriver.support.ui import WebDriverWait<br> wait = ui.WebDriverWait(driver,10)<br> wait.until(lambda driver: driver.find_element_by_xpath(“path”))<br> OR<br> element = WebDriverWait(driver, 10).until(<br>   EC.presence_of_element_located((By.CLASS_NAME, “search-show”)))<br> element.click()</li>
+<li>Problem:<br>Unable to locate: “No Such Element Exception: Unable to locate element”<br>Solution:<br>(1) check path<br>(2) if the path is right, the possible reason is that the element is not fully loaded.<br>a. use <strong>While()</strong>: break when the element is loaded.<br>b. use <strong>WebDriverWait(driver, time).until(element)</strong>:<br>eg: from selenium.webdriver.support.ui import WebDriverWait<br> wait = ui.WebDriverWait(driver,10)<br> wait.until(lambda driver: driver.find_element_by_xpath(“path”))<br> OR<br> element = WebDriverWait(driver, 10).until(<br>   EC.presence_of_element_located((By.CLASS_NAME, “search-show”)))<br> element.click()</li>
 </ol>
 
           
@@ -1455,154 +1606,6 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/15/VSE-Improving-Visual-Semantic-Embeddings-with-Hard-Negatives/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/15/VSE-Improving-Visual-Semantic-Embeddings-with-Hard-Negatives/" itemprop="url">VSE++: Improving Visual-Semantic Embeddings with Hard Negatives</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-15T18:09:45+08:00">
-                2019-05-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>a brief introduction to <em>VSE++: Improving Visual-Semantic Embeddings with Hard Negatives</em></p>
-<ol>
-<li><p>Abstract<br>(1) inspired by: hard negative mining<br>(2) propose: a new loss function (a simple change to common loss function)<br>(3) combined with: fine tune + augmented data</p>
-</li>
-<li><p>Introduction<br>(1) basic problem: one of ranking<br>(2) augmented data + fine tune =&gt; improve Caption retrieval<br>(3) the benefit of a more powerful image encoder, with finetuning =&gt; is amplified with the use of the loss function</p>
-</li>
-<li><p>Learning Visual-Semantic Embeddings<br>(1) the target of I-T retrieval: ↑ R@k<br>(2) the Similarity funtion  -&gt; is defined on the joint embedding space<br>3.1 Visual-Semantic Embedding<br> (1) Image Encoder: VGG19 | ResNet152<br> (2) Word Encoder: GRU-based text encoder<br> (3) mappings into the joint embedding space -&gt; linear projections<br> (4) similarity function: inner product<br> (5) cumulative loss over training data:<br> (6) loss function for a single training exemplar: hinge-based triplet ranking loss<br>3.2 Emphasis on Hard Negatives<br> (1) hard negatives: the negatives closest to each training query.<br> (2) new loss function: (to emphasis the hardest negatives)<br> (3) how to find hardest negatives: find them within each mini-batch + random sampling of the mini-batches<br>3.3 Probability of Sampling the Hardest Negative<br> (1) for large enough mini-batchs, with high probability we sample negative captions that are harder than 90% of the entire training set<br> (2) Mini-batches size: 128</p>
-</li>
-<li><p>Experiments<br>(1) Image:<br> a. previous work:<br>   extract image features directly from FC7, the penultimate fully connected layer<br>   dimensionality: 4096 for VGG19 | 2048 for ResNet152<br> b. steps:<br>   resize the image to 256 X 256<br>   use either a single crop of size 224 X 224 or the mean of feature vectors for multiple crops of similar size<br> c. 1C | 10C | RC<br>   1C: one center crop<br>   10C: training with 10 crops at fixed locations<br>   RC: a single random crop (used in this paper)<br>(2) Caption:<br> a. dimensionality: 300 -&gt; GRU -&gt; 1024<br>(3) Normalization:<br> a. VSE: the caption embedding is normalized, while the image embedding is not.<br> b. VSEPP: normalize both<br> c. reason: Not normalizing the image embedding changes the importance of samples.<br> -&gt; not normalizing the image embedding helped the VSE0 to find a better solution.<br> However, VSE++ is not significantly affected by this normalization.<br>   3.2 Details of Training</p>
-<pre><code> (1) Adam optimizer
- (2) at most 30 epochs
-   a. Common: start -&gt; learning rate **0:0002** for 15 epochs -&gt; learning rate to **0:00002** for another 15 epochs
-   b. fine-tuned: trained for 30 epochs with a fixed image encoder -&gt; then learning rate to **0:00002** for another 15 epochs
- (3) margin: 0.2
- (4) solution to over-fitting: choosing the snapshot of the model that performs best on the validation set
-   The best snapshot: selected based on the sum of the recalls on the validation set
-</code></pre><p>   3.5 Improving Order Embeddings</p>
-<pre><code>   training set: 10C + RV
- (1) Order: copied from original paper *Order-Embeddings of Images and Language*
- (2)Order0: use training settings in orginal paper.
-   a. start training with a learning rate of **0:001** for 15 epochs
-   b. lower the learning rate to **0:0001** for another 15 epochs
-   c. margin: 0:05
-   d. takes the absolute value of embeddings before computing the similarity function
- (3)Order++: use the same learning schedule and margin as the experiments in this paper + MH loss function
-</code></pre><p>   3.6 Behavior of Loss Functions</p>
-<pre><code> MH loss depends on a smaller set of triplets compared to the SH loss
-</code></pre></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1653,7 +1656,7 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
