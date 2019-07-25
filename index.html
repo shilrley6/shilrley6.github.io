@@ -271,6 +271,131 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/07/25/Bidirectional-Retrieval-Made-Simple/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/25/Bidirectional-Retrieval-Made-Simple/" itemprop="url">Bidirectional Retrieval Made Simple</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-25T17:19:44+08:00">
+                2019-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>a brief introduction to <em>Bidirectional Retrieval Made Simple</em> —CHAIN-VSE</p>
+<p>0.Abstract<br>  (1) put words, phrases, sentences, and images into a jointly shared space<br>  (2) Loss func: same to Order Embedding[1]</p>
+<p>1.CHAIN-VSE<br>  inception-based modules named Character-level Inception for Visual-Semantic Embeddings</p>
+<p>(1) V1<br>   Consists of <strong>two</strong> inception modules<br>   a. First module: maps the binary character-level(one-hot) content from the sentences -&gt; dense representation<br>    by convolving the characters with ﬁlter sizes f ∈ {7,5,3}, generating word-embedding-like vectors.<br>   b. Second module: consists in using <strong>four</strong> independent convolutional streams<br>   </p>
+<p>2.Experiment<br>(1)Hyper-Parameters:<br>  p: regulates the number of ﬁlters in the convolutional layers<br>  d: deﬁnes the latent-embedding size</p>
+<p>[1] <em>Order-Embeddings of images and language</em></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/07/19/YFCC100M/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -344,8 +469,8 @@
           
             <p>a brief introduction to YFCC100M<br><em>YFCC100M: The New Data in Multimedia Research</em></p>
 <p>1.Download:<br>(1) <a href="https://webscope.sandbox.yahoo.com/catalog.php?datatype=i&amp;did=67&amp;guccounter=1" target="_blank" rel="noopener">https://webscope.sandbox.yahoo.com/catalog.php?datatype=i&amp;did=67&amp;guccounter=1</a><br>  click the button <em>selcect this dataset</em> to add I3 into your request<br>(2) requisite: Yahoo account, AWS account<br>  (PS: when you register an AWS account, you need to input your credit/debit card ID.<br>  But it won’t deduct your money.)<br>(3) When applying the I3, you are supposed to fill in the AWS identifier, which is a 64-bit string.<br>  (where to get it: click the website provided in the ‘?’.  -&gt; click the last line which is account information)<br>(4) if you apply successfully, you will receive a mail.<br>(5) when you are informed to download the dataset(in a mail), you can follow the instructions offered in the mail.<br>(6) Notice: ‘aws configure’  -&gt; you will need to input your actionkey, secrect key, default region, and default output.<br>about the region: you should input the code provided in the page where you get your actionkey(IAM HOME).(eg: us_west_2 -&gt; Oregon; ap_northeast_1 -&gt; Tokyo)</p>
-<ol>
-<li>Metadata<ul>
+<p>2.Metadata</p>
+<ul>
 <li>Line number</li>
 <li>Photo/video identifier</li>
 <li>Photo/video hash</li>
@@ -372,8 +497,6 @@
 <li>Extension of the original photo</li>
 <li>Photos/video marker (0 = photo, 1 = video)</li>
 </ul>
-</li>
-</ol>
 
           
         
@@ -1480,132 +1603,6 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/17/Order-Embeddings-of-Images-and-Language/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/17/Order-Embeddings-of-Images-and-Language/" itemprop="url">Order-Embeddings of Images and Language</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-17T18:53:13+08:00">
-                2019-05-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>a brief introduction to <em>Order-Embeddings of Images and Language</em></p>
-<ol>
-<li><p>Abstact<br>(1) Goal: explicitly model<br> -&gt; the partial order structure of this visual-semantic hierarchy<br>(2) method: learn ordered representations</p>
-</li>
-<li><p>Introduction</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1656,7 +1653,7 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
