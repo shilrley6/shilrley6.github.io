@@ -350,88 +350,76 @@
 </ol>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ol>
 <li>why Bidirectional:<br>standard language models are unidirectional -&gt; limits the choice of architectures that can be used during pre-training &amp;&amp; restrict the power of the pre-trained representations</li>
-<li>two strategies for applying pre-trained language representations to downstream tasks: <em>feature-based</em> and <em>fine-tuning</em>.</li>
-</ol>
-<ul>
+<li>two strategies for applying pre-trained language representations to downstream tasks: <em>feature-based</em> and <em>fine-tuning</em>.<ul>
 <li>Feature-based approach: using task-specific architectures that include the pre-trained representations as additional features. (eg. ELMo)</li>
 <li>Fine-tuning approach: simply fine-tuning all pretrained parameters when trained on the downstream tasks. can introduce minimal task-specific parameters. (eg. OpenAI GPT)<br>both of them share the same objective function during pre-training.</li>
 </ul>
-<ol>
+</li>
 <li>BERT pretraining tasks: MLM(masked language model) + NSP(next sentence prediction)</li>
 <li><a href="https://github.com/google-research/bert" target="_blank" rel="noopener">BERT code</a></li>
 </ol>
 <h1 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h1><h2 id="Overall-Architectures"><a href="#Overall-Architectures" class="headerlink" title="Overall Architectures"></a>Overall Architectures</h2><ol>
-<li>pre-training + fine-tuning:</li>
-</ol>
-<ul>
+<li>pre-training + fine-tuning:<ul>
 <li>pre-training: trained on unlabeled data.</li>
 <li>fine-tuning: first initialized with the pre-trained parameters, and all of the parameters are fine-tuned using labeled data from the downstream tasks.</li>
 </ul>
-<ol>
+</li>
 <li>Multi-layer bidirectional Transformer encoder (based on <a href="https://github.com/tensorflow/tensor2tensor" target="_blank" rel="noopener">tensor to tensor</a>)</li>
-<li>Notation:</li>
-</ol>
-<ul>
+<li>Notation:<ul>
 <li>the number of layers(i.e., Transformer blocks): <em>L</em></li>
 <li>the hidden size: <em>H</em></li>
 <li>the number of self-attention heads: <em>A</em></li>
 </ul>
-<ol>
-<li>two model sizes:</li>
-</ol>
-<ul>
-<li>BERT<sup>BASE</sup>: L=12, H=768, A=12, Total Parameters=110M</li>
-<li>BERT<sup>LARGE</sup>: L=24, H=1024, A=16, Total Parameters=340M</li>
+</li>
+<li>two model sizes:<ul>
+<li>BERT<sub>BASE</sub>: L=12, H=768, A=12, Total Parameters=110M</li>
+<li>BERT<sub>LARGE</sub>: L=24, H=1024, A=16, Total Parameters=340M</li>
 </ul>
+</li>
+</ol>
 <h2 id="Input-Output-Representations"><a href="#Input-Output-Representations" class="headerlink" title="Input/Output Representations"></a>Input/Output Representations</h2><ol>
-<li>Concept:</li>
-</ol>
-<ul>
-<li><em>sentence</em>: an arbitrary span of contiguous text, rather than an actual linguistic sentence.</li>
-<li><em>sequence</em>: the input token sequence to BERT, which may be a single sentence or two sentences packed together.</li>
+<li>Concept:<ul>
+<li><em>sentence</em> : an arbitrary span of contiguous text, rather than an actual linguistic sentence.</li>
+<li><em>sequence</em> : the input token sequence to BERT, which may be a single sentence or two sentences packed together.</li>
 </ul>
-<ol>
-<li>How to process text:</li>
-</ol>
-<ul>
+</li>
+<li>How to process text:<ul>
 <li>using <strong>WordPiece embeddings</strong> with a 30,000 token vocabulary.</li>
 <li>using <strong>[CLS]</strong> as the first token of every sequence.</li>
 <li>using <strong>[SEP]</strong> to sepetate different sentences in a sequence. / adding a learned embedding to every token to indicate whether it belongs to sentence A or sentence B.</li>
 </ul>
-<ol>
+</li>
 <li>Final Input Representation = token embeddings + segment embeddings + position embeddings</li>
 </ol>
 <h2 id="Pre-training"><a href="#Pre-training" class="headerlink" title="Pre-training"></a>Pre-training</h2><h3 id="Masked-Language-Model-MLM"><a href="#Masked-Language-Model-MLM" class="headerlink" title="Masked Language Model (MLM)"></a>Masked Language Model (MLM)</h3><ol>
 <li>the problem when using bidirectional model: allow each word to indirectly ‘see itself’<br>solution: using MLM</li>
 <li>the downside of a bidirectional pre-trained model: a mismatch between pre-training and fine-tuning<br>solution: taking different strategies to replace masked token</li>
-<li>Disign:</li>
-</ol>
-<ul>
+<li>Disign:<ul>
 <li>mask 15% of all WordPiece tokens in each sequence at random.</li>
 <li>replace the mask token in 3 ways: (1) 80%: the [MASK] token. (2) 10%: a random token. (3) 10%: unchanged.</li>
 <li>the final hidden vectors corresponding to the mask tokens are fed into an output softmax over the vocabulary</li>
 <li>Loss function: cross-entropy(predict token, ground-truth)</li>
 </ul>
+</li>
+</ol>
 <h3 id="Next-Sentence-Prediction-NSP"><a href="#Next-Sentence-Prediction-NSP" class="headerlink" title="Next Sentence Prediction (NSP)"></a>Next Sentence Prediction (NSP)</h3><ol>
 <li>Input: negative pairs : positive pairs = 1 : 1</li>
 <li><em>C</em>: the final hidden vectors of [CLS] -&gt; binary classification -&gt; IsNext / NotNext<br>(PS. The vector <em>C</em> is not a meaningful sentence representation without fine-tuning, since it was trained with NSP.)</li>
 </ol>
 <h2 id="Fine-tuning"><a href="#Fine-tuning" class="headerlink" title="Fine-tuning"></a>Fine-tuning</h2><ol>
-<li>Input: a sequence(sentence A and sentence B)<br>for different tasks, they are:</li>
-</ol>
-<ul>
+<li>Input: a sequence(sentence A and sentence B)<br>for different tasks, they are:<ul>
 <li>sentence pairs in paraphrasing,</li>
 <li>hypothesis-premise pairs in entailment</li>
 <li>question-passage pairs in question answering</li>
 <li>a degenerate text-$\emptyset$ pair in text classification or sequence tagging</li>
 </ul>
-<ol>
-<li>Output:</li>
-</ol>
-<ul>
+</li>
+<li>Output:<ul>
 <li>token representations are fed into an output layer for token-level tasks (eg. sequence tagging or question answering)</li>
 <li>the [CLS] representation is fed into an output layer for classification (eg. entailment or sentiment analysis)</li>
 </ul>
+</li>
+</ol>
 
           
         
