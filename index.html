@@ -271,6 +271,696 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2020/02/10/BERT/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/10/BERT/" itemprop="url">BERT</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-10T15:20:45+08:00">
+                2020-02-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>a brief introduction to <strong><em>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</em></strong></p>
+<h1 id="Abstact"><a href="#Abstact" class="headerlink" title="Abstact"></a>Abstact</h1><ol>
+<li>BERT: <strong>B</strong> idirectional <strong>E</strong> ncoder <strong>R</strong> epresentations from <strong>T</strong> ransformers</li>
+<li>Highlight: Bidirectional (use both left and right context in all layers)</li>
+<li>Model: <em>pre-training</em> + <em>fine-tuning</em></li>
+</ol>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ol>
+<li>why Bidirectional:<br>standard language models are unidirectional -&gt; limits the choice of architectures that can be used during pre-training &amp;&amp; restrict the power of the pre-trained representations</li>
+<li>two strategies for applying pre-trained language representations to downstream tasks: <em>feature-based</em> and <em>fine-tuning</em>.</li>
+</ol>
+<ul>
+<li>Feature-based approach: using task-specific architectures that include the pre-trained representations as additional features. (eg. ELMo)</li>
+<li>Fine-tuning approach: simply fine-tuning all pretrained parameters when trained on the downstream tasks. can introduce minimal task-specific parameters. (eg. OpenAI GPT)<br>both of them share the same objective function during pre-training.</li>
+</ul>
+<ol>
+<li>BERT pretraining tasks: MLM(masked language model) + NSP(next sentence prediction)</li>
+<li><a href="https://github.com/google-research/bert" target="_blank" rel="noopener">BERT code</a></li>
+</ol>
+<h1 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h1><h2 id="Overall-Architectures"><a href="#Overall-Architectures" class="headerlink" title="Overall Architectures"></a>Overall Architectures</h2><ol>
+<li>pre-training + fine-tuning:</li>
+</ol>
+<ul>
+<li>pre-training: trained on unlabeled data.</li>
+<li>fine-tuning: first initialized with the pre-trained parameters, and all of the parameters are fine-tuned using labeled data from the downstream tasks.</li>
+</ul>
+<ol>
+<li>Multi-layer bidirectional Transformer encoder (based on <a href="https://github.com/tensorflow/tensor2tensor" target="_blank" rel="noopener">tensor to tensor</a>)</li>
+<li>Notation:</li>
+</ol>
+<ul>
+<li>the number of layers(i.e., Transformer blocks): <em>L</em></li>
+<li>the hidden size: <em>H</em></li>
+<li>the number of self-attention heads: <em>A</em></li>
+</ul>
+<ol>
+<li>two model sizes:</li>
+</ol>
+<ul>
+<li>BERT<sup>BASE</sup>: L=12, H=768, A=12, Total Parameters=110M</li>
+<li>BERT<sup>LARGE</sup>: L=24, H=1024, A=16, Total Parameters=340M</li>
+</ul>
+<h2 id="Input-Output-Representations"><a href="#Input-Output-Representations" class="headerlink" title="Input/Output Representations"></a>Input/Output Representations</h2><ol>
+<li>Concept:</li>
+</ol>
+<ul>
+<li><em>sentence</em>: an arbitrary span of contiguous text, rather than an actual linguistic sentence.</li>
+<li><em>sequence</em>: the input token sequence to BERT, which may be a single sentence or two sentences packed together.</li>
+</ul>
+<ol>
+<li>How to process text:</li>
+</ol>
+<ul>
+<li>using <strong>WordPiece embeddings</strong> with a 30,000 token vocabulary.</li>
+<li>using <strong>[CLS]</strong> as the first token of every sequence.</li>
+<li>using <strong>[SEP]</strong> to sepetate different sentences in a sequence. / adding a learned embedding to every token to indicate whether it belongs to sentence A or sentence B.</li>
+</ul>
+<ol>
+<li>Final Input Representation = token embeddings + segment embeddings + position embeddings</li>
+</ol>
+<h2 id="Pre-training"><a href="#Pre-training" class="headerlink" title="Pre-training"></a>Pre-training</h2><h3 id="Masked-Language-Model-MLM"><a href="#Masked-Language-Model-MLM" class="headerlink" title="Masked Language Model (MLM)"></a>Masked Language Model (MLM)</h3><ol>
+<li>the problem when using bidirectional model: allow each word to indirectly ‘see itself’<br>solution: using MLM</li>
+<li>the downside of a bidirectional pre-trained model: a mismatch between pre-training and fine-tuning<br>solution: taking different strategies to replace masked token</li>
+<li>Disign:</li>
+</ol>
+<ul>
+<li>mask 15% of all WordPiece tokens in each sequence at random.</li>
+<li>replace the mask token in 3 ways: (1) 80%: the [MASK] token. (2) 10%: a random token. (3) 10%: unchanged.</li>
+<li>the final hidden vectors corresponding to the mask tokens are fed into an output softmax over the vocabulary</li>
+<li>Loss function: cross-entropy(predict token, ground-truth)</li>
+</ul>
+<h3 id="Next-Sentence-Prediction-NSP"><a href="#Next-Sentence-Prediction-NSP" class="headerlink" title="Next Sentence Prediction (NSP)"></a>Next Sentence Prediction (NSP)</h3><ol>
+<li>Input: negative pairs : positive pairs = 1 : 1</li>
+<li><em>C</em>: the final hidden vectors of [CLS] -&gt; binary classification -&gt; IsNext / NotNext<br>(PS. The vector <em>C</em> is not a meaningful sentence representation without fine-tuning, since it was trained with NSP.)</li>
+</ol>
+<h2 id="Fine-tuning"><a href="#Fine-tuning" class="headerlink" title="Fine-tuning"></a>Fine-tuning</h2><ol>
+<li>Input: a sequence(sentence A and sentence B)<br>for different tasks, they are:</li>
+</ol>
+<ul>
+<li>sentence pairs in paraphrasing,</li>
+<li>hypothesis-premise pairs in entailment</li>
+<li>question-passage pairs in question answering</li>
+<li>a degenerate text-$\emptyset$ pair in text classification or sequence tagging</li>
+</ul>
+<ol>
+<li>Output:</li>
+</ol>
+<ul>
+<li>token representations are fed into an output layer for token-level tasks (eg. sequence tagging or question answering)</li>
+<li>the [CLS] representation is fed into an output layer for classification (eg. entailment or sentiment analysis)</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2020/02/09/Unicoder-VL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/09/Unicoder-VL/" itemprop="url">Unicoder-VL</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-09T14:09:55+08:00">
+                2020-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2020/01/26/Basic-knowledge-of-Mathematics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/26/Basic-knowledge-of-Mathematics/" itemprop="url">Basic knowledge of Mathematics</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-26T15:23:15+08:00">
+                2020-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>总结了常用的数学常识，方便自己查阅。</p>
+<h1 id="微积分"><a href="#微积分" class="headerlink" title="微积分"></a>微积分</h1><p>微积分包括微分和积分，积分包括不定积分和定积分。  </p>
+<p>微分 ≈ 求导</p>
+<p>积分，求导的逆过程。不定积分：求一个函数f(x)的不定积分,就是要求出一个原函数F(x)。定积分：定积分与不定积分的区别是,定积分有上下限。</p>
+<p>因而不定积分的结果往往是个函数,定积分的结果则是个常数。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/12/29/Multi-step-Reasoning-via-Recurrent-Dual-Attention-for-Visual-Dialog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/12/29/Multi-step-Reasoning-via-Recurrent-Dual-Attention-for-Visual-Dialog/" itemprop="url">Multi-step Reasoning via Recurrent Dual Attention for Visual Dialog</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-29T20:51:42+08:00">
+                2019-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/10/21/VSRN-Visual-Semantic-Reasoning-for-Image-Text-Matching/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/21/VSRN-Visual-Semantic-Reasoning-for-Image-Text-Matching/" itemprop="url">VSRN: Visual Semantic Reasoning for Image-Text Matching</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-21T13:43:25+08:00">
+                2019-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/07/25/Bidirectional-Retrieval-Made-Simple/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -942,666 +1632,6 @@ model = nn.Sequential(OrderedDict([
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/27/Learning-Visual-N-Grams-from-Web-Data/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/27/Learning-Visual-N-Grams-from-Web-Data/" itemprop="url">Learning Visual N-Grams from Web Data</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-27T11:58:55+08:00">
-                2019-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>a brief introduction to <em>Learning Visual N-Grams from Web Data</em></p>
-<ol>
-<li><p>Summary<br>(1) Dataset: YFCC100M (images-user comments pairs)[30 million]<flickr><br>(2) Image Feature: ResNet34<br>(3) Loss function: Naive n-gram loss(multi-class logistic loss) &amp;&amp; Jelinek-Mercer (J-M) loss(Jelinek-Mercer smoothing)<br>(4) Experiment setting: SGD | batch-size:128 | epoch: 10 |<br>learning rate: 0.1[learning rate is divided by 10 whenever the training loss stabilizes (until a minimum learning rate of 0.001)]<br>(5) Relating Images and Captions:<br> Image retrieval: rank images according to their log-likelihood for a particular caption<br> Caption retrieval: ranking all captions in the test set according to their log-likelihood under the model.</flickr></p>
-</li>
-<li><p>Introduction<br>(1) Visual n-gram models: can predict arbitrary phrases that are relevant to the content of an image.<br>(2) Model Structure: feed-forward convolutional networks + new loss functions(inspired by n-gram models commonly used in language modeling)<br>(3) Follow <em>Learning visual features from large weakly supervised data</em><br>(4) Bridge the semantic gap between vision and language: predict phrases that are relevant to the contents of an image<br>(5) Loss function: optimizes trainable parameters for frequent n-grams, whereas for infrequent n-grams, the loss is dominated by the predicted likelihood of smaller “sub-grams”</p>
-</li>
-<li><p>Learning Visual N-Gram Models<br>3.1 Dataset<br>(1) YFCC100M: 99.2 million images + associated multi-lingual user comments<br>(2) Utilization: 30 million images and English comments<br>(3) Image pretreatment: rescale to 256 X 256 pixels (using bicubic interpolation) -&gt; crop the central 224 x 224 -&gt; subtract the mean pixel value of each image -&gt; divide by the standard deviation of the pixel values.<br>(4) Text pretreatment: remove punctuations -&gt;  add [BEGIN] and [END] tokens at the beginning and end of each sentence<br>(5) Building dictionary of all English n-grams(n: 1 ~ 5): more than 1, 000 occurrences in the 30 million English comments. -&gt; 142, 806 n-grams: 22, 869 unigrams, 56, 830 bigrams, 32, 560 trigrams, 17, 351 four-grams, and 13, 196 five-grams</p>
-</li>
-</ol>
-<p>3.2 Loss functions<br>3.2.1 Naive n-gram loss<br>  (1) measures the (negative) log-likelihood of in-dictionary n-grams that are present in a comment<br>  (2) multi-class logistic loss<br>  (3) the loss: the sum of all n-grams that appear in the sentence w &amp;&amp; ignore n-grams that do not appear in the dictionary<br>  (4) Problem: cannot do language modeling -&gt; Reason: it does not model a conditional probability<br>-&gt; Solution: an ad-hoc conditional distribution based on the scores produced by the model at prediction time using a “stupid” back-off model<br>  (5) Drawbacks:<br>    1) it ignores out-of-dictionary n-grams entirely during training<br>    2) the parameters E that correspond to infrequent in-dictionary words are difficult to pin down</p>
-<p>3.2.2 Jelinek-Mercer (J-M) loss</p>
-<ol>
-<li>Experiments<br>4.3 Relating Images and Captions</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/22/Multimodal-Convolutional-Neural-Networks-for-Matching-Image-and-Sentence/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/22/Multimodal-Convolutional-Neural-Networks-for-Matching-Image-and-Sentence/" itemprop="url">Multimodal Convolutional Neural Networks for Matching Image and Sentence</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-22T16:36:45+08:00">
-                2019-05-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>a brief introduction to <em>Multimodal Convolutional Neural Networks<br>for Matching Image and Sentence</em></p>
-<ol>
-<li>Summary<br>(1) m-CNN provides an end-to-end framework with convolutional architectures to<br>exploit image representation, word composition, and the matching relations<br>between the two modalities.<br>(2) Component: image CNN &amp; matching CNN &amp; MLP </li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/22/Learning-Two-Branch-Neural-Networksfor-Image-Text-Matching-Tasks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/22/Learning-Two-Branch-Neural-Networksfor-Image-Text-Matching-Tasks/" itemprop="url">Learning Two-Branch Neural Networks for Image-Text Matching Tasks</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-22T15:58:09+08:00">
-                2019-05-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>a brief introduction to <em>Learning Two-Branch Neural Networks<br>for Image-Text Matching Tasks</em></p>
-<ol>
-<li><p>Summary<br>(1) According to different ways to learn the similarity score, this paper<br>propose two variants of two-branch networks that follow these two strategies.<br>(2) 2-branch: extract image and text features respectively.<br>(3) Embedding network:  map images and text -&gt; explicit joint embedding space<br>(4) Similarity Network:<br> frame image/text correspondence as a binary classification problem.<br>(given a pair, the goal is to output the probability that the two items match.)</p>
-</li>
-<li><p>introduction<br>(1) Tasks: phrase localization &amp; bi-directional image-sentence retrieval<br>(2) Network architecture:<br>extract image/text features -&gt; fuse them -&gt; similarity score<br>(3) Embedding network:<br> a. Goal: map image and text features<br> b. Each branch: data -&gt; nonlinearities(2 layers) -&gt; L2 normalization<br> c. Loss function: bi-directional ranking loss</p>
-<pre><code>               + neighborhood-preserving constraints
-</code></pre><p>(4) Similarity network:<br> a.Structure: nonlinearities(2 layers) -&gt; element-wise product<br>-&gt; single vector -&gt; fully connected layers<br> b. Loss function: logistic regression loss<br> c. Weakness(compared to Embedding net): it no longer has an explicit<br>embedding space and cannot encode structural constraints.</p>
-</li>
-<li><p>Embedding and Similarity networks<br>3.1 Overview of Image-Text Tasks<br>embedding network is suitable for image-text retrieval<br>3.2 Embedding network<br>SGD + Bi-directional ranking loss</p>
-<ul>
-<li>Neighborhood-preserving constraint + Neighborhood sampling</li>
-</ul>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/20/CM-GANs-Cross-modal-Generative-Adversarial-Networksfor-Common-Representation-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/20/CM-GANs-Cross-modal-Generative-Adversarial-Networksfor-Common-Representation-Learning/" itemprop="url">CM-GANs: Cross-modal Generative Adversarial Networks for Common Representation Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-20T15:16:53+08:00">
-                2019-05-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>a brief introduction to <em>CM-GANs: Cross-modal Generative Adversarial Networks<br>for Common Representation Learning</em></p>
-<p>0.Summary<br>  0.1 Structure<br>    (1) Generative Model:<br>      VGG19(image) | word CNN(text)<br>      -&gt; fully connected layer(first) + batch normalization + RELU<br>      -&gt; fully connected layer(second) + batch normalization + RELU</p>
-<pre><code>  + weight-sharing between 2 paths
-  -&gt; Common representations -&gt; softmax layer &amp; decoder
-  Decoder: fully connected layer(first) + batch normalization + RELU
-  -&gt; fully connected layer(second)
-  -&gt; text | image reconstructions
-(2) Intra-modality Discriminative Model:
-  reconstructions -&gt; fully connected layer -&gt; sigmoid layer
-  original representation: 1 | reconstructed representation: 0
-(3) Inter-modality Discriminative Model:
-  a. two-pathway network
-  b. input: common representation + original representation
-  c. each path: softmax layer
-    -&gt; fully connected layer(first) + batch normalization + RELU
-    -&gt; fully connected layer(second) (out: single-value predicted score)
-    -&gt; sigmoid layer
-  d. Label:
-    Image:
-      image common representation: 1
-      corresponding text representation
-        &amp; mismatched image common representation: 0
-    Text:
-      text common representation: 1
-      corresponding image representation
-        &amp; mismatched text common representation: 0
-0.2 
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/20/Stacked-Cross-Attention-forImage-Text-Matching/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liu Liu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/20/Stacked-Cross-Attention-forImage-Text-Matching/" itemprop="url">Stacked Cross Attention for Image-Text Matching</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-20T15:00:42+08:00">
-                2019-05-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>a brief introduction to <em>Stacked Cross Attention for Image-Text Matching</em></p>
-<p>0.Summary<br>  (1) Image representation: bottom-up attention + Faster-RNN + ResNet101<br>  (2) Sentence represetation: one-hot vector (word -&gt; 300-dimentional vector)<br>    =&gt; bi-directional GRU(AVG forward &amp; backword)<br>  (3) Common representation: SCA model<br>    a. Input: a set of image features(image feature -&gt; a region in an image)</p>
-<pre><code>+ a set of word features (word feature -&gt; a word in a sentence)
-b. Output: similarity score
-c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
-</code></pre><p>  (4) Loss function: hinge-based triplet ranking loss(like vsepp)<br>    -&gt; finding the hardest negatives based on the similarity<br>  (5) Experiments:<br>    a.Datasets: COCO | Flickr 30k</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1652,7 +1682,7 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1703,7 +1733,7 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

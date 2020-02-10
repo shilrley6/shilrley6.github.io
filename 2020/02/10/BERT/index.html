@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="a brief introduction to Multimodal Convolutional Neural Networksfor Matching Image and Sentence  Summary(1) m-CNN provides an end-to-end framework with convolutional architectures toexploit image repr">
+<meta name="description" content="a brief introduction to BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding Abstact BERT: B idirectional E ncoder R epresentations from T ransformers Highlight: Bidirectio">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Multimodal Convolutional Neural Networks for Matching Image and Sentence">
-<meta property="og:url" content="https://shilrley6.github.io/2019/05/22/Multimodal-Convolutional-Neural-Networks-for-Matching-Image-and-Sentence/index.html">
+<meta property="og:title" content="BERT">
+<meta property="og:url" content="https://shilrley6.github.io/2020/02/10/BERT/index.html">
 <meta property="og:site_name" content="Liu Liu">
-<meta property="og:description" content="a brief introduction to Multimodal Convolutional Neural Networksfor Matching Image and Sentence  Summary(1) m-CNN provides an end-to-end framework with convolutional architectures toexploit image repr">
+<meta property="og:description" content="a brief introduction to BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding Abstact BERT: B idirectional E ncoder R epresentations from T ransformers Highlight: Bidirectio">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-22T08:43:27.094Z">
+<meta property="og:updated_time" content="2020-02-10T09:13:01.750Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Multimodal Convolutional Neural Networks for Matching Image and Sentence">
-<meta name="twitter:description" content="a brief introduction to Multimodal Convolutional Neural Networksfor Matching Image and Sentence  Summary(1) m-CNN provides an end-to-end framework with convolutional architectures toexploit image repr">
+<meta name="twitter:title" content="BERT">
+<meta name="twitter:description" content="a brief introduction to BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding Abstact BERT: B idirectional E ncoder R epresentations from T ransformers Highlight: Bidirectio">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://shilrley6.github.io/2019/05/22/Multimodal-Convolutional-Neural-Networks-for-Matching-Image-and-Sentence/">
+  <link rel="canonical" href="https://shilrley6.github.io/2020/02/10/BERT/">
 
 
 
 
 
-  <title>Multimodal Convolutional Neural Networks for Matching Image and Sentence | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>BERT | Liu Liu</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -274,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/22/Multimodal-Convolutional-Neural-Networks-for-Matching-Image-and-Sentence/">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2020/02/10/BERT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -291,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Multimodal Convolutional Neural Networks for Matching Image and Sentence</h1>
+          <h1 class="post-title" itemprop="name headline">BERT</h1>
         
 
         <div class="post-meta">
@@ -303,8 +303,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-22T16:36:45+08:00">
-                2019-05-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-10T15:20:45+08:00">
+                2020-02-10
               </time>
             
 
@@ -341,10 +341,96 @@
       
 
       
-        <p>a brief introduction to <em>Multimodal Convolutional Neural Networks<br>for Matching Image and Sentence</em></p>
-<ol>
-<li>Summary<br>(1) m-CNN provides an end-to-end framework with convolutional architectures to<br>exploit image representation, word composition, and the matching relations<br>between the two modalities.<br>(2) Component: image CNN &amp; matching CNN &amp; MLP </li>
+        <p>a brief introduction to <strong><em>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</em></strong></p>
+<h1 id="Abstact"><a href="#Abstact" class="headerlink" title="Abstact"></a>Abstact</h1><ol>
+<li>BERT: <strong>B</strong> idirectional <strong>E</strong> ncoder <strong>R</strong> epresentations from <strong>T</strong> ransformers</li>
+<li>Highlight: Bidirectional (use both left and right context in all layers)</li>
+<li>Model: <em>pre-training</em> + <em>fine-tuning</em></li>
 </ol>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ol>
+<li>why Bidirectional:<br>standard language models are unidirectional -&gt; limits the choice of architectures that can be used during pre-training &amp;&amp; restrict the power of the pre-trained representations</li>
+<li>two strategies for applying pre-trained language representations to downstream tasks: <em>feature-based</em> and <em>fine-tuning</em>.</li>
+</ol>
+<ul>
+<li>Feature-based approach: using task-specific architectures that include the pre-trained representations as additional features. (eg. ELMo)</li>
+<li>Fine-tuning approach: simply fine-tuning all pretrained parameters when trained on the downstream tasks. can introduce minimal task-specific parameters. (eg. OpenAI GPT)<br>both of them share the same objective function during pre-training.</li>
+</ul>
+<ol>
+<li>BERT pretraining tasks: MLM(masked language model) + NSP(next sentence prediction)</li>
+<li><a href="https://github.com/google-research/bert" target="_blank" rel="noopener">BERT code</a></li>
+</ol>
+<h1 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h1><h2 id="Overall-Architectures"><a href="#Overall-Architectures" class="headerlink" title="Overall Architectures"></a>Overall Architectures</h2><ol>
+<li>pre-training + fine-tuning:</li>
+</ol>
+<ul>
+<li>pre-training: trained on unlabeled data.</li>
+<li>fine-tuning: first initialized with the pre-trained parameters, and all of the parameters are fine-tuned using labeled data from the downstream tasks.</li>
+</ul>
+<ol>
+<li>Multi-layer bidirectional Transformer encoder (based on <a href="https://github.com/tensorflow/tensor2tensor" target="_blank" rel="noopener">tensor to tensor</a>)</li>
+<li>Notation:</li>
+</ol>
+<ul>
+<li>the number of layers(i.e., Transformer blocks): <em>L</em></li>
+<li>the hidden size: <em>H</em></li>
+<li>the number of self-attention heads: <em>A</em></li>
+</ul>
+<ol>
+<li>two model sizes:</li>
+</ol>
+<ul>
+<li>BERT<sup>BASE</sup>: L=12, H=768, A=12, Total Parameters=110M</li>
+<li>BERT<sup>LARGE</sup>: L=24, H=1024, A=16, Total Parameters=340M</li>
+</ul>
+<h2 id="Input-Output-Representations"><a href="#Input-Output-Representations" class="headerlink" title="Input/Output Representations"></a>Input/Output Representations</h2><ol>
+<li>Concept:</li>
+</ol>
+<ul>
+<li><em>sentence</em>: an arbitrary span of contiguous text, rather than an actual linguistic sentence.</li>
+<li><em>sequence</em>: the input token sequence to BERT, which may be a single sentence or two sentences packed together.</li>
+</ul>
+<ol>
+<li>How to process text:</li>
+</ol>
+<ul>
+<li>using <strong>WordPiece embeddings</strong> with a 30,000 token vocabulary.</li>
+<li>using <strong>[CLS]</strong> as the first token of every sequence.</li>
+<li>using <strong>[SEP]</strong> to sepetate different sentences in a sequence. / adding a learned embedding to every token to indicate whether it belongs to sentence A or sentence B.</li>
+</ul>
+<ol>
+<li>Final Input Representation = token embeddings + segment embeddings + position embeddings</li>
+</ol>
+<h2 id="Pre-training"><a href="#Pre-training" class="headerlink" title="Pre-training"></a>Pre-training</h2><h3 id="Masked-Language-Model-MLM"><a href="#Masked-Language-Model-MLM" class="headerlink" title="Masked Language Model (MLM)"></a>Masked Language Model (MLM)</h3><ol>
+<li>the problem when using bidirectional model: allow each word to indirectly ‘see itself’<br>solution: using MLM</li>
+<li>the downside of a bidirectional pre-trained model: a mismatch between pre-training and fine-tuning<br>solution: taking different strategies to replace masked token</li>
+<li>Disign:</li>
+</ol>
+<ul>
+<li>mask 15% of all WordPiece tokens in each sequence at random.</li>
+<li>replace the mask token in 3 ways: (1) 80%: the [MASK] token. (2) 10%: a random token. (3) 10%: unchanged.</li>
+<li>the final hidden vectors corresponding to the mask tokens are fed into an output softmax over the vocabulary</li>
+<li>Loss function: cross-entropy(predict token, ground-truth)</li>
+</ul>
+<h3 id="Next-Sentence-Prediction-NSP"><a href="#Next-Sentence-Prediction-NSP" class="headerlink" title="Next Sentence Prediction (NSP)"></a>Next Sentence Prediction (NSP)</h3><ol>
+<li>Input: negative pairs : positive pairs = 1 : 1</li>
+<li><em>C</em>: the final hidden vectors of [CLS] -&gt; binary classification -&gt; IsNext / NotNext<br>(PS. The vector <em>C</em> is not a meaningful sentence representation without fine-tuning, since it was trained with NSP.)</li>
+</ol>
+<h2 id="Fine-tuning"><a href="#Fine-tuning" class="headerlink" title="Fine-tuning"></a>Fine-tuning</h2><ol>
+<li>Input: a sequence(sentence A and sentence B)<br>for different tasks, they are:</li>
+</ol>
+<ul>
+<li>sentence pairs in paraphrasing,</li>
+<li>hypothesis-premise pairs in entailment</li>
+<li>question-passage pairs in question answering</li>
+<li>a degenerate text-$\emptyset$ pair in text classification or sequence tagging</li>
+</ul>
+<ol>
+<li>Output:</li>
+</ol>
+<ul>
+<li>token representations are fed into an output layer for token-level tasks (eg. sequence tagging or question answering)</li>
+<li>the [CLS] representation is fed into an output layer for classification (eg. entailment or sentiment analysis)</li>
+</ul>
 
       
     </div>
@@ -369,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/22/Learning-Two-Branch-Neural-Networksfor-Image-Text-Matching-Tasks/" rel="next" title="Learning Two-Branch Neural Networks for Image-Text Matching Tasks">
-                <i class="fa fa-chevron-left"></i> Learning Two-Branch Neural Networks for Image-Text Matching Tasks
+              <a href="/2020/02/09/Unicoder-VL/" rel="next" title="Unicoder-VL">
+                <i class="fa fa-chevron-left"></i> Unicoder-VL
               </a>
             
           </div>
@@ -378,10 +464,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/27/Learning-Visual-N-Grams-from-Web-Data/" rel="prev" title="Learning Visual N-Grams from Web Data">
-                Learning Visual N-Grams from Web Data <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -433,8 +515,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -486,6 +577,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstact"><span class="nav-number">1.</span> <span class="nav-text">Abstact</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Approach"><span class="nav-number">3.</span> <span class="nav-text">Approach</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overall-Architectures"><span class="nav-number">3.1.</span> <span class="nav-text">Overall Architectures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Input-Output-Representations"><span class="nav-number">3.2.</span> <span class="nav-text">Input/Output Representations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pre-training"><span class="nav-number">3.3.</span> <span class="nav-text">Pre-training</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Masked-Language-Model-MLM"><span class="nav-number">3.3.1.</span> <span class="nav-text">Masked Language Model (MLM)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Next-Sentence-Prediction-NSP"><span class="nav-number">3.3.2.</span> <span class="nav-text">Next Sentence Prediction (NSP)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fine-tuning"><span class="nav-number">3.4.</span> <span class="nav-text">Fine-tuning</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
