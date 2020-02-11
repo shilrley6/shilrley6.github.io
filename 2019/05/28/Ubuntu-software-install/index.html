@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Liu Liu">
 <meta property="og:description" content="Anaconda3 + Cuda9.0 + Cudnn7.1.4 + Pytorch1.1 + PycocotoolsAnaconda3  Home: https://www.anaconda.com/  Linux Python3.7 Version -&amp;gt; bash .run File  use ‘conda list’ to verify if install successfull C">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-02-11T13:59:43.995Z">
+<meta property="og:updated_time" content="2020-02-11T14:10:56.810Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu software install">
 <meta name="twitter:description" content="Anaconda3 + Cuda9.0 + Cudnn7.1.4 + Pytorch1.1 + PycocotoolsAnaconda3  Home: https://www.anaconda.com/  Linux Python3.7 Version -&amp;gt; bash .run File  use ‘conda list’ to verify if install successfull C">
@@ -366,11 +366,11 @@ sudo ldconfig
 <h1 id="update-nvidia-version"><a href="#update-nvidia-version" class="headerlink" title="update nvidia version"></a>update nvidia version</h1><ol>
 <li><p>search and download required driver <a href="https://www.geforce.cn/drivers" target="_blank" rel="noopener">here</a><br>ps. GTX 1080Ti is belong to Geforce 10 Series</p>
 </li>
-<li><p>uninstall the original driver<br>‘’’<br>sudo apt-get remove —purge nvidia*<br>‘’’</p>
-</li>
-<li><p>install the new driver<br>‘’’<br>sudo service lightdm stop #close the GUI<br>sudo ./NVIDIA-Linux-x86_64-390.77.run<br>sudo service lightdm start<br>‘’’<br>ps. some options: continue? yes -&gt; DKMS? no -&gt; 32-bit? no -&gt; nvidia-xconfigutilit? yes</p>
+<li><p>uninstall the original driver<br>~~~<br>sudo apt-get remove —purge nvidia*</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. install the new driver</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<p>sudo service lightdm stop #close the GUI<br>sudo ./NVIDIA-Linux-x86_64-390.77.run<br>sudo service lightdm start<br>```<br>ps. some options: continue? yes -&gt; DKMS? no -&gt; 32-bit? no -&gt; nvidia-xconfigutilit? yes</p>
 <p>Reference: <a href="https://blog.csdn.net/u013832707/article/details/93157805" target="_blank" rel="noopener">https://blog.csdn.net/u013832707/article/details/93157805</a></p>
 
       
