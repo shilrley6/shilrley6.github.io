@@ -271,6 +271,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/28/Ubuntu-software-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liu Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/28/Ubuntu-software-install/" itemprop="url">Ubuntu software install</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-28T21:57:29+08:00">
+                2019-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Anaconda3-Cuda9-0-Cudnn7-1-4-Pytorch1-1-Pycocotools"><a href="#Anaconda3-Cuda9-0-Cudnn7-1-4-Pytorch1-1-Pycocotools" class="headerlink" title="Anaconda3 + Cuda9.0 + Cudnn7.1.4 + Pytorch1.1 + Pycocotools"></a>Anaconda3 + Cuda9.0 + Cudnn7.1.4 + Pytorch1.1 + Pycocotools</h1><h2 id="Anaconda3"><a href="#Anaconda3" class="headerlink" title="Anaconda3"></a>Anaconda3</h2><p>  Home: <a href="https://www.anaconda.com/" target="_blank" rel="noopener">https://www.anaconda.com/</a><br>  Linux Python3.7 Version -&gt; bash .run File<br>  use ‘conda list’ to verify if install successfull</p>
+<h2 id="Cuda9-0"><a href="#Cuda9-0" class="headerlink" title="Cuda9.0"></a>Cuda9.0</h2><p>  Home: <a href="https://developer.nvidia.com/cuda-toolkit-archive" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-toolkit-archive</a><br>  Select cuda9.0 Linux | x86_64 | Ubuntu | 16.04 | run<br>  Run ‘sudo sh cuda_9.0*.run’(follow the steps in website)<br>  While installation:<br>    choose ‘no’ to the second question(refuse to install GPU driver)<br>  Mistake solution:<br>    (1)msg:’Missing recommended library: libGLU.so<br>            Missing recommended library: libX11.so<br>            Missing recommended library: libXi.so<br>            Missing recommended library: libXmu.so’<br>      solution: sudo apt-get install freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev<br>  Environment Variables:<br>    sudo vi ~/.bashrc</p>
+<pre><code>#add following at the end of the file
+export PATH=/usr/local/cuda-9.0/bin:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64 #注意冒号
+
+#update configuration
+sudo source ~/.bashrc
+</code></pre><p>  Verify if install successfull:<br>    cd  /usr/local/cuda-9.0/samples/1_Utilities/deviceQuery<br>    sudo make<br>    ./deviceQuery</p>
+<pre><code>#if succeed, the imformation about GPU will be show on the terminal
+</code></pre><p>  Check the version:<br>    cat /usr/local/cuda/version.txt</p>
+<h2 id="Cudnn-7-1-4"><a href="#Cudnn-7-1-4" class="headerlink" title="Cudnn 7.1.4"></a>Cudnn 7.1.4</h2><p>  Home: <a href="https://developer.nvidia.com/rdp/cudnn-archive" target="_blank" rel="noopener">https://developer.nvidia.com/rdp/cudnn-archive</a><br>  choose ‘7.1.4 for Linux’<br>  download the .tgz File<br>  Cmd:<br>    tar -zxvf cudnn-9.0-linux-x64-v7.1.tgz<br>    cd cuda<br>    sudo cp lib64/lib<em> /usr/local/cuda-9.0/lib64/<br>    sudo cp include/cudnn.h /usr/local/cuda-9.0/include/<br>    sudo cp cuda/lib64/libcudnn</em> /usr/local/cuda-9.0/lib64<br>    sudo chmod a+r /usr/local/cuda-9.0/include/cudnn.h /usr/local/cuda-9.0/lib64/libcudnn*</p>
+<pre><code>#update the link
+cd /usr/local/cuda-9.0/lib64/  
+sudo chmod +r libcudnn.so.7.1.3  #use &#39;ls libcud*&#39; -&gt; comfirm the version of .so  
+sudo ln -sf libcudnn.so.7.1.3. libcudnn.so.7  
+sudo ln -sf libcudnn.so.7 libcudnn.so  
+sudo ldconfig
+</code></pre><p>  Check the Version:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2</span><br></pre></td></tr></table></figure></p>
+<h2 id="Pytorch-1-1"><a href="#Pytorch-1-1" class="headerlink" title="Pytorch 1.1"></a>Pytorch 1.1</h2><p>  Home: <a href="https://pytorch.org/get-started/locally/" target="_blank" rel="noopener">https://pytorch.org/get-started/locally/</a><br>  Select the related version<br>  use the cmd provided by the web</p>
+<h2 id="Pycocotools"><a href="#Pycocotools" class="headerlink" title="Pycocotools"></a>Pycocotools</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/cocodataset/cocoapi.git</span><br><span class="line">cd cocoapi/PythonAPI</span><br><span class="line">make</span><br><span class="line">pip install pycocotools</span><br></pre></td></tr></table></figure>
+<p>Reference: <a href="https://zhuanlan.zhihu.com/p/44183691" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/44183691</a></p>
+<h1 id="Update-nvidia-version"><a href="#Update-nvidia-version" class="headerlink" title="Update nvidia version"></a>Update nvidia version</h1><ol>
+<li><p>search and download required driver <a href="https://www.geforce.cn/drivers" target="_blank" rel="noopener">here</a><br>ps. GTX 1080Ti is belong to Geforce 10 Series</p>
+</li>
+<li><p>uninstall the original driver</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove --purge nvidia*</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>install the new driver</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo service lightdm stop #close the GUI</span><br><span class="line">sudo ./NVIDIA-Linux-x86_64-390.77.run</span><br><span class="line">sudo service lightdm start</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>ps. some options: continue? yes -&gt; DKMS? no -&gt; 32-bit? no -&gt; nvidia-xconfigutilit? yes</p>
+<p>Reference: <a href="https://blog.csdn.net/u013832707/article/details/93157805" target="_blank" rel="noopener">https://blog.csdn.net/u013832707/article/details/93157805</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://shilrley6.github.io/2019/05/27/Learning-Visual-N-Grams-from-Web-Data/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1512,7 +1665,7 @@ c. Component: (Image-Text &amp; Text-Image) Stacked Cross Attention
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
